@@ -103,7 +103,7 @@
     .gg-price{font-size:46px} .gg-btns button{min-width:0;flex:1}
   }
 
-  /* Échelles de Likert à 7 points (Davis, 1987) */
+  /* Échelles de Likert à 7 points (Barata et Coelho, 2021) */
   .scale-intro{margin-bottom:6px}
   .src{font-size:11.5px;color:var(--muted);margin:2px 0 4px;line-height:1.45}
   .src a{color:var(--purple-dark)}
@@ -138,7 +138,7 @@
       <img src="img/deezer-logo.png" alt="Logo Deezer" width="92">
       <h1>Les abonnements musicaux des étudiants</h1>
     </div>
-    <p>Le questionnaire prend environ <strong>5 minutes</strong>. Il n'y a pas de bonne ou de mauvaise réponse : seul votre avis compte.</p>
+    <p>Le questionnaire prend environ <strong>3 minutes</strong>. Il n'y a pas de bonne ou de mauvaise réponse : seul votre avis compte.</p>
     <div class="q">
       <label class="label" for="age">Quel âge avez-vous ?</label>
       <div class="money"><input id="age" inputmode="numeric" autocomplete="off" maxlength="2" placeholder="ex. 21"> ans</div>
@@ -232,27 +232,18 @@
     <div class="nav"><button data-prev>Précédent</button></div>
   </section>
 
-  <!-- 6. UTILITÉ PERÇUE – échelle de Davis (1987), 10 items, 7 points -->
-  <section class="card" data-step="pu" hidden>
-    <h2>Ce que l'offre vous apporterait</h2>
-    <p class="muted scale-intro">Pour chaque phrase, indiquez votre degré d'accord, de 1 (pas du tout d'accord) à 7 (tout à fait d'accord). Si vous n'utilisez pas Deezer, répondez en imaginant que vous l'utilisez.</p>
-    <p class="src">Échelle « utilité perçue » adaptée de Davis, F. D. (1987), <i>User Acceptance of Information Systems: The Technology Acceptance Model (TAM)</i>, Working Paper n° 529, University of Michigan. <a href="https://hdl.handle.net/2027.42/35547" target="_blank" rel="noopener">Consulter l'article</a></p>
-    <div id="box-pu"></div>
-    <div class="err" id="err-pu">Merci de répondre à chaque phrase.</div>
+  <!-- 6. VOTRE AVIS – échelles de Barata & Coelho (2021), 7 points -->
+  <section class="card" data-step="avis" hidden>
+    <h2>Votre avis sur l'offre et son prix</h2>
+    <p class="scale-intro">Aujourd'hui, l'offre Deezer Étudiant coûte <strong>5,99 € par mois</strong>.</p>
+    <p class="muted scale-intro">Pour chaque phrase, indiquez votre degré d'accord, de 1 (pas du tout d'accord) à 7 (tout à fait d'accord).</p>
+    <p class="src">Échelles « valeur perçue du prix » et « intention d'utilisation » adaptées de Barata, M. L. et Coelho, P. S. (2021), « Music streaming services: understanding the drivers of customer purchase and intention to recommend », <i>Heliyon</i>, 7(8), e07783. <a href="https://doi.org/10.1016/j.heliyon.2021.e07783" target="_blank" rel="noopener">Consulter l'article</a></p>
+    <div id="box-avis"></div>
+    <div class="err" id="err-avis">Merci de répondre à chaque phrase.</div>
     <div class="nav"><button data-prev>Précédent</button><button class="primary" data-next>Suivant</button></div>
   </section>
 
-  <!-- 7. FACILITÉ D'UTILISATION PERÇUE – échelle de Davis (1987), 10 items, 7 points -->
-  <section class="card" data-step="peou" hidden>
-    <h2>La facilité d'utilisation</h2>
-    <p class="muted scale-intro">Même consigne : de 1 (pas du tout d'accord) à 7 (tout à fait d'accord).</p>
-    <p class="src">Échelle « facilité d'utilisation perçue » adaptée de Davis, F. D. (1987), <i>User Acceptance of Information Systems: The Technology Acceptance Model (TAM)</i>, Working Paper n° 529, University of Michigan. <a href="https://hdl.handle.net/2027.42/35547" target="_blank" rel="noopener">Consulter l'article</a></p>
-    <div id="box-peou"></div>
-    <div class="err" id="err-peou">Merci de répondre à chaque phrase.</div>
-    <div class="nav"><button data-prev>Précédent</button><button class="primary" data-next>Suivant</button></div>
-  </section>
-
-  <!-- 8. PROFIL -->
+  <!-- 7. PROFIL -->
   <section class="card" data-step="profil" hidden>
     <h2>Pour finir, quelques mots sur vous</h2>
     <div class="q">
@@ -267,16 +258,13 @@
       </div>
     </div>
     <div class="q">
-      <span class="label">En moyenne, à quelle fréquence utilisez-vous ce service ?</span>
+      <span class="label">À quelle fréquence utilisez-vous ce service ?</span>
       <div class="opts">
-        <label class="opt"><input type="radio" name="frequence" value="1"> Je ne l'utilise pas</label>
-        <label class="opt"><input type="radio" name="frequence" value="2"> Moins d'une fois par semaine</label>
-        <label class="opt"><input type="radio" name="frequence" value="3"> Environ une fois par semaine</label>
-        <label class="opt"><input type="radio" name="frequence" value="4"> Plusieurs fois par semaine</label>
-        <label class="opt"><input type="radio" name="frequence" value="5"> Environ une fois par jour</label>
-        <label class="opt"><input type="radio" name="frequence" value="6"> Plusieurs fois par jour</label>
+        <label class="opt"><input type="radio" name="frequence" value="tous_les_jours"> Tous les jours ou presque</label>
+        <label class="opt"><input type="radio" name="frequence" value="plusieurs_fois_semaine"> Plusieurs fois par semaine</label>
+        <label class="opt"><input type="radio" name="frequence" value="une_fois_semaine"> Environ une fois par semaine</label>
+        <label class="opt"><input type="radio" name="frequence" value="moins_souvent"> Moins souvent</label>
       </div>
-      <p class="src" style="margin-top:8px">Échelle de fréquence d'usage reprise de Davis (1987), p. 19. <a href="https://hdl.handle.net/2027.42/35547" target="_blank" rel="noopener">Consulter l'article</a></p>
     </div>
     <div class="q">
       <span class="label">Avec quelle formule ?</span>
@@ -333,36 +321,20 @@ const CONFIG = {
   // Gabor-Granger séquentiel : prix proposés un par un, du plus bas au plus haut, arrêt au premier « Non ».
   // Deezer Étudiant 5,99 € ; plafond concurrentiel Spotify Étudiants 7,07 € (spotify.com/fr/premium, 20/10/2026).
   GG_PRICES: [4.99, 5.49, 5.99, 6.29, 6.49, 6.79, 7.07],
-  QUESTIONNAIRE_VERSION: "v3.0-2026-10-20"
+  QUESTIONNAIRE_VERSION: "v4.0-2026-10-20"
 };
 
-/* Échelles de Davis (1987), annexe p. 32-33, adaptées à Deezer Étudiant.
-   Codage : 1 = pas du tout d'accord … 7 = tout à fait d'accord (sens inversé par rapport à l'article, plus courant en français).
-   inv = item formulé négativement dans l'article : à recoder (8 − score) avant de calculer le score et l'alpha de Cronbach. */
+/* Échelles de Barata et Coelho (2021, Heliyon, tableau 1), elles-mêmes reprises de Venkatesh et al. (2012).
+   7 points : 1 = pas du tout d'accord … 7 = tout à fait d'accord (même format que l'article).
+   Valeur perceptuelle du prix (PV) : alpha = 0,962 dans l'article ; intention d'utilisation (BI). */
 const SCALES = {
-  pu: [
-    ["pu_01", "Utiliser Deezer Étudiant améliorerait la qualité de mes moments d'écoute musicale."],
-    ["pu_02", "Utiliser Deezer Étudiant me donnerait plus de contrôle sur ce que j'écoute."],
-    ["pu_03", "Deezer Étudiant me permettrait de trouver plus rapidement la musique que je veux écouter."],
-    ["pu_04", "Deezer Étudiant répondrait aux aspects essentiels de ma façon d'écouter de la musique."],
-    ["pu_05", "Utiliser Deezer Étudiant me ferait gagner du temps dans mon écoute de musique."],
-    ["pu_06", "Utiliser Deezer Étudiant améliorerait mon expérience d'écoute."],
-    ["pu_07", "Deezer Étudiant me permettrait d'écouter davantage de musique qu'aujourd'hui."],
-    ["pu_08", "Utiliser Deezer Étudiant rendrait mon écoute de musique plus efficace."],
-    ["pu_09", "Utiliser Deezer Étudiant me faciliterait l'écoute de musique au quotidien (révisions, trajets, sport…)."],
-    ["pu_10", "Globalement, je trouverais Deezer Étudiant utile dans ma vie de tous les jours."]
-  ],
-  peou: [
-    ["peou_01_inv", "Je trouverais l'application Deezer compliquée à utiliser."],
-    ["peou_02", "Apprendre à me servir de Deezer serait facile pour moi."],
-    ["peou_03_inv", "Utiliser Deezer serait souvent frustrant."],
-    ["peou_04", "Il me serait facile d'obtenir de Deezer ce que je veux (trouver un titre, créer une playlist…)."],
-    ["peou_05_inv", "L'application Deezer serait rigide et peu flexible à l'usage."],
-    ["peou_06", "Il me serait facile de me souvenir comment faire les actions courantes sur Deezer."],
-    ["peou_07_inv", "Utiliser Deezer me demanderait beaucoup d'effort de concentration."],
-    ["peou_08", "Mon utilisation de Deezer serait claire et compréhensible."],
-    ["peou_09_inv", "Il me faudrait beaucoup d'efforts pour bien maîtriser Deezer."],
-    ["peou_10", "Globalement, je trouverais Deezer facile à utiliser."]
+  avis: [
+    ["pv_1", "L'offre Deezer Étudiant est proposée à un prix raisonnable."],
+    ["pv_2", "L'offre Deezer Étudiant offre un bon rapport qualité-prix."],
+    ["pv_3", "Au prix actuel, l'offre Deezer Étudiant apporte une bonne valeur."],
+    ["bi_1", "J'ai l'intention d'utiliser (ou de continuer à utiliser) l'offre Deezer Étudiant à l'avenir."],
+    ["bi_2", "Je vais essayer d'utiliser l'offre Deezer Étudiant dans ma vie de tous les jours."],
+    ["bi_3", "Je prévois d'utiliser l'offre Deezer Étudiant dans un futur proche."]
   ]
 };
 /* ========================================================== */
@@ -374,8 +346,8 @@ const store = {
   set(k,v){ try { sessionStorage.setItem(k,v); } catch(e){} }
 };
 
-const rid = store.get("dz3_id") || ((crypto.randomUUID && crypto.randomUUID()) || (Date.now().toString(36) + Math.random().toString(36).slice(2)));
-store.set("dz3_id", rid);
+const rid = store.get("dz4_id") || ((crypto.randomUUID && crypto.randomUUID()) || (Date.now().toString(36) + Math.random().toString(36).slice(2)));
+store.set("dz4_id", rid);
 const t0 = Date.now();
 let tOffer = null;
 
@@ -396,7 +368,10 @@ Object.entries(SCALES).forEach(([sc, items]) => {
 });
 document.addEventListener("change", e => {
   const it = e.target.closest(".item");
-  if (it) it.classList.remove("missing");
+  if (!it) return;
+  it.classList.remove("missing");
+  const sec = it.closest("section");
+  if (!sec.querySelector(".item.missing")) sec.querySelector(".err")?.classList.remove("on");
 });
 
 // Gabor-Granger séquentiel
@@ -432,7 +407,7 @@ document.querySelectorAll('input[name="formule"]').forEach(i => i.addEventListen
 
 // Navigation
 const steps = [...document.querySelectorAll("section[data-step]")];
-const flow = ["accueil","filtre","offre","vw","gg","pu","peou","profil"];
+const flow = ["accueil","filtre","offre","vw","gg","avis","profil"];
 let cur = "accueil";
 function radio(n){ const el = document.querySelector(`input[name="${n}"]:checked`); return el ? el.value : ""; }
 const money = id => {
@@ -474,8 +449,7 @@ const validate = {
   filtre:  () => err("filtre", !radio("f_etudiant") || !radio("f_streaming")),
   offre:   () => true,
   vw:      () => err("vw", ["vw_trop_bon_marche","vw_bon_marche","vw_cher","vw_trop_cher"].some(id => money(id) === null)),
-  pu:      () => scaleOk("pu"),
-  peou:    () => scaleOk("peou"),
+  avis:    () => scaleOk("avis"),
   profil:  () => err("profil", !radio("service") || !radio("frequence") || !radio("formule") || (!payeurBox.hidden && !radio("payeur")))
 };
 
@@ -517,14 +491,13 @@ function collect(statut){
   d.gg_prix_max_accepte = refus === 0 ? "" : prices[(refus === -1 ? prices.length : refus) - 1];
   d.gg_premier_refus = refus === -1 ? "" : prices[refus];
   d.gg_nb_prix_vus = ggAnswers.length;
-  // Échelles de Davis : réponses brutes (1 à 7) + scores moyens calculés après recodage des items inversés
-  Object.entries(SCALES).forEach(([sc, items]) => {
-    let sum = 0;
-    items.forEach(([k]) => { const v = parseInt(radio(k), 10); d[k] = v; sum += k.endsWith("_inv") ? 8 - v : v; });
-    d["score_" + sc] = Math.round(sum / items.length * 100) / 100;
-  });
+  // Échelles de Barata et Coelho (2021) : réponses brutes (1 à 7) + score moyen par construit
+  const avg = ks => Math.round(ks.reduce((t,k) => t + d[k], 0) / ks.length * 100) / 100;
+  SCALES.avis.forEach(([k]) => d[k] = parseInt(radio(k), 10));
+  d.score_pv = avg(["pv_1","pv_2","pv_3"]);
+  d.score_bi = avg(["bi_1","bi_2","bi_3"]);
   d.service = radio("service");
-  d.frequence = parseInt(radio("frequence"), 10);
+  d.frequence = radio("frequence");
   d.formule = radio("formule");
   d.payeur = d.formule === "gratuite" ? "sans_objet" : radio("payeur");
   return d;
@@ -532,12 +505,12 @@ function collect(statut){
 
 async function send(statut){
   const data = collect(statut);
-  if (store.get("dz3_sent_" + statut)) return;
+  if (store.get("dz4_sent_" + statut)) return;
   if (!CONFIG.ENDPOINT) { console.log("Réponse (mode démo, non envoyée) :", data); window.__lastPayload = data; return; }
   try {
     await fetch(CONFIG.ENDPOINT, { method: "POST", mode: "no-cors",
       headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) });
-    store.set("dz3_sent_" + statut, "1");
+    store.set("dz4_sent_" + statut, "1");
   } catch (e) {
     document.getElementById("merciMsg").textContent = "Un problème de connexion a empêché l'envoi. Vérifiez votre connexion puis rechargez la page : désolé pour la gêne.";
   }
