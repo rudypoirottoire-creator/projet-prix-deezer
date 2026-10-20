@@ -102,6 +102,25 @@
     h1{font-size:25px} .card{padding:22px 18px} .likert label{font-size:11px;padding:8px 2px}
     .gg-price{font-size:46px} .gg-btns button{min-width:0;flex:1}
   }
+
+  /* Échelles de Likert à 7 points (Davis, 1987) */
+  .scale-intro{margin-bottom:6px}
+  .src{font-size:11.5px;color:var(--muted);margin:2px 0 4px;line-height:1.45}
+  .src a{color:var(--purple-dark)}
+  .item{margin:18px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+  .item:first-of-type{border-top:0;padding-top:4px}
+  .item .label{font-weight:700;display:block;margin-bottom:10px;line-height:1.4}
+  .item .num{color:var(--purple-dark);margin-right:4px}
+  .l7{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+  .l7 label{position:relative;display:flex;align-items:center;justify-content:center;height:42px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;font-weight:700;color:var(--muted);transition:border-color .15s,background .15s}
+  .l7 label:hover{border-color:var(--purple-line)}
+  .l7 input{position:absolute;opacity:0;width:1px;height:1px}
+  .l7 label:has(input:checked){border-color:var(--purple);background:var(--purple);color:#fff}
+  .l7 label:has(input:focus-visible){outline:3px solid var(--purple-line);outline-offset:2px}
+  .anchors{display:grid;grid-template-columns:1fr 1fr 1fr;font-size:11px;color:var(--muted);margin-top:5px;line-height:1.2}
+  .anchors span:nth-child(2){text-align:center}
+  .anchors span:nth-child(3){text-align:right}
+  .item.missing .l7 label{border-color:#F3B27A}
 </style>
 </head>
 <body>
@@ -113,20 +132,21 @@
   </header>
   <div class="bar"><i id="progress"></i></div>
 
-  <!-- 1. ACCUEIL ET CONSENTEMENT -->
+  <!-- 1. ACCUEIL, ÂGE ET CONSENTEMENT -->
   <section class="card" data-step="accueil">
     <div class="hero">
       <img src="img/deezer-logo.png" alt="Logo Deezer" width="92">
       <h1>Les abonnements musicaux des étudiants</h1>
-      <span class="chip">Étude universitaire indépendante, non commandée par Deezer</span>
     </div>
-    <p>Nous sommes un groupe d'étudiants en Master 1 Marketing Vente à l'IAE Clermont Auvergne (Université Clermont Auvergne). Dans le cadre d'un cours sur la fixation des prix, nous étudions le prix des abonnements musicaux étudiants.</p>
-    <p>Le questionnaire prend environ <strong>3 minutes</strong>. Il n'y a pas de bonne ou de mauvaise réponse : seul votre avis compte.</p>
-    <p class="muted"><strong>Vos données :</strong> le questionnaire est anonyme. Nous ne demandons ni nom, ni adresse e-mail, et nous n'enregistrons pas votre adresse IP. Les réponses servent uniquement à ce travail universitaire, ne sont transmises à aucune entreprise (ni Deezer, ni un autre service) et seront supprimées à la fin de l'année universitaire. Vous pouvez arrêter à tout moment : rien n'est enregistré tant que vous n'avez pas terminé.</p>
+    <p>Le questionnaire prend environ <strong>5 minutes</strong>. Il n'y a pas de bonne ou de mauvaise réponse : seul votre avis compte.</p>
     <div class="q">
-      <label class="opt"><input type="checkbox" id="consent"> J'ai 18 ans ou plus et j'accepte de répondre à ce questionnaire.</label>
+      <label class="label" for="age">Quel âge avez-vous ?</label>
+      <div class="money"><input id="age" inputmode="numeric" autocomplete="off" maxlength="2" placeholder="ex. 21"> ans</div>
     </div>
-    <div class="err" id="err-accueil">Merci de cocher la case pour commencer.</div>
+    <div class="q">
+      <label class="opt"><input type="checkbox" id="consent"> J'accepte de répondre à ce questionnaire.</label>
+    </div>
+    <div class="err" id="err-accueil">Merci d'indiquer votre âge en chiffres et de cocher la case pour commencer.</div>
     <div class="nav"><button class="primary" data-next>Commencer</button></div>
   </section>
 
@@ -151,7 +171,7 @@
     <div class="nav"><button data-prev>Précédent</button><button class="primary" data-next>Suivant</button></div>
   </section>
 
-  <!-- 3. L'OFFRE (VERSION A OU B) -->
+  <!-- 3. L'OFFRE (aucun prix affiché, ni Deezer ni concurrent, pour ne pas ancrer les réponses) -->
   <section class="card" data-step="offre" hidden>
     <h2>L'offre étudiée</h2>
     <p>Lisez attentivement cette offre : les questions suivantes portent sur son <strong>prix par mois</strong>.</p>
@@ -167,8 +187,6 @@
         <li>Son haute fidélité</li>
         <li>Sans engagement : résiliable à tout moment</li>
       </ul>
-      <!-- Seule différence entre A et B : ce paragraphe n'existe que dans la version B -->
-      <p class="ref" id="refSpotify" hidden>À titre de comparaison : chez Spotify, l'offre Étudiants équivalente coûte 7,07 € par mois.</p>
     </div>
     <div class="nav"><button data-prev>Précédent</button><button class="primary" data-next>Suivant</button></div>
   </section>
@@ -214,36 +232,29 @@
     <div class="nav"><button data-prev>Précédent</button></div>
   </section>
 
-  <!-- 6. MANIPULATION CHECK (vérifie que la variable manipulée – la référence Spotify – a bien été perçue) -->
-  <section class="card" data-step="manip" hidden>
-    <h2>Une question sur la présentation</h2>
-    <div class="q">
-      <span class="label">Dans la présentation de l'offre Deezer Étudiant, le prix d'un service concurrent était-il indiqué ?</span>
-      <div class="opts">
-        <label class="opt"><input type="radio" name="manip_check" value="oui"> Oui</label>
-        <label class="opt"><input type="radio" name="manip_check" value="non"> Non</label>
-        <label class="opt"><input type="radio" name="manip_check" value="ne_sait_plus"> Je ne m'en souviens pas</label>
-      </div>
-    </div>
-    <div class="err" id="err-manip">Merci de choisir une réponse.</div>
-    <div class="nav"><button class="primary" data-next>Suivant</button></div>
+  <!-- 6. UTILITÉ PERÇUE – échelle de Davis (1987), 10 items, 7 points -->
+  <section class="card" data-step="pu" hidden>
+    <h2>Ce que l'offre vous apporterait</h2>
+    <p class="muted scale-intro">Pour chaque phrase, indiquez votre degré d'accord, de 1 (pas du tout d'accord) à 7 (tout à fait d'accord). Si vous n'utilisez pas Deezer, répondez en imaginant que vous l'utilisez.</p>
+    <p class="src">Échelle « utilité perçue » adaptée de Davis, F. D. (1987), <i>User Acceptance of Information Systems: The Technology Acceptance Model (TAM)</i>, Working Paper n° 529, University of Michigan. <a href="https://hdl.handle.net/2027.42/35547" target="_blank" rel="noopener">Consulter l'article</a></p>
+    <div id="box-pu"></div>
+    <div class="err" id="err-pu">Merci de répondre à chaque phrase.</div>
+    <div class="nav"><button data-prev>Précédent</button><button class="primary" data-next>Suivant</button></div>
   </section>
 
-  <!-- 7. PERCEPTION (Likert, optionnel) -->
-  <section class="card" data-step="perception" hidden>
-    <h2>Votre avis</h2>
-    <p class="muted">Facultatif : vous pouvez passer les phrases sur lesquelles vous n'avez pas d'avis.</p>
-    <div id="likertBox"></div>
+  <!-- 7. FACILITÉ D'UTILISATION PERÇUE – échelle de Davis (1987), 10 items, 7 points -->
+  <section class="card" data-step="peou" hidden>
+    <h2>La facilité d'utilisation</h2>
+    <p class="muted scale-intro">Même consigne : de 1 (pas du tout d'accord) à 7 (tout à fait d'accord).</p>
+    <p class="src">Échelle « facilité d'utilisation perçue » adaptée de Davis, F. D. (1987), <i>User Acceptance of Information Systems: The Technology Acceptance Model (TAM)</i>, Working Paper n° 529, University of Michigan. <a href="https://hdl.handle.net/2027.42/35547" target="_blank" rel="noopener">Consulter l'article</a></p>
+    <div id="box-peou"></div>
+    <div class="err" id="err-peou">Merci de répondre à chaque phrase.</div>
     <div class="nav"><button data-prev>Précédent</button><button class="primary" data-next>Suivant</button></div>
   </section>
 
   <!-- 8. PROFIL -->
   <section class="card" data-step="profil" hidden>
     <h2>Pour finir, quelques mots sur vous</h2>
-    <div class="q">
-      <label class="label" for="age">Quel âge avez-vous ?</label>
-      <div class="money"><input id="age" inputmode="numeric" autocomplete="off" maxlength="3" placeholder="ex. 21"> ans</div>
-    </div>
     <div class="q">
       <span class="label">Quel service de musique utilisez-vous le plus ?</span>
       <div class="opts">
@@ -254,6 +265,18 @@
         <label class="opt"><input type="radio" name="service" value="amazon_music"> Amazon Music</label>
         <label class="opt"><input type="radio" name="service" value="autre"> Un autre service</label>
       </div>
+    </div>
+    <div class="q">
+      <span class="label">En moyenne, à quelle fréquence utilisez-vous ce service ?</span>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="frequence" value="1"> Je ne l'utilise pas</label>
+        <label class="opt"><input type="radio" name="frequence" value="2"> Moins d'une fois par semaine</label>
+        <label class="opt"><input type="radio" name="frequence" value="3"> Environ une fois par semaine</label>
+        <label class="opt"><input type="radio" name="frequence" value="4"> Plusieurs fois par semaine</label>
+        <label class="opt"><input type="radio" name="frequence" value="5"> Environ une fois par jour</label>
+        <label class="opt"><input type="radio" name="frequence" value="6"> Plusieurs fois par jour</label>
+      </div>
+      <p class="src" style="margin-top:8px">Échelle de fréquence d'usage reprise de Davis (1987), p. 19. <a href="https://hdl.handle.net/2027.42/35547" target="_blank" rel="noopener">Consulter l'article</a></p>
     </div>
     <div class="q">
       <span class="label">Avec quelle formule ?</span>
@@ -275,7 +298,7 @@
         <label class="opt"><input type="radio" name="payeur" value="inclus"> Il est inclus dans un autre abonnement (box, forfait mobile…)</label>
       </div>
     </div>
-    <div class="err" id="err-profil">Merci de répondre à toutes les questions (âge en chiffres, entre 18 et 99 ans).</div>
+    <div class="err" id="err-profil">Merci de répondre à toutes les questions.</div>
     <div class="nav"><button data-prev>Précédent</button><button class="primary" data-next id="btnSend">Envoyer mes réponses</button></div>
   </section>
 
@@ -292,7 +315,14 @@
     <p>Cette étude s'adresse aux étudiant·e·s qui écoutent de la musique en streaming. Vous n'êtes donc pas concerné·e par la suite du questionnaire.</p>
     <p class="muted">Vous pouvez fermer cette page.</p>
   </section>
-  <footer>Questionnaire anonyme · Master 1 Marketing Vente, IAE Clermont Auvergne · Deezer est une marque de Deezer SA</footer>
+
+  <section class="card done" data-step="mineur" hidden>
+    <h1>Merci de votre intérêt</h1>
+    <p>Ce questionnaire est réservé aux personnes de 18 ans ou plus. Aucune réponse n'a été enregistrée.</p>
+    <p class="muted">Vous pouvez fermer cette page.</p>
+  </section>
+
+  <footer>Questionnaire anonyme · étude universitaire indépendante · Master 1 Marketing Vente, IAE Clermont Auvergne · Deezer est une marque de Deezer SA</footer>
 </main>
 
 <script>
@@ -303,7 +333,37 @@ const CONFIG = {
   // Gabor-Granger séquentiel : prix proposés un par un, du plus bas au plus haut, arrêt au premier « Non ».
   // Deezer Étudiant 5,99 € ; plafond concurrentiel Spotify Étudiants 7,07 € (spotify.com/fr/premium, 20/10/2026).
   GG_PRICES: [4.99, 5.49, 5.99, 6.29, 6.49, 6.79, 7.07],
-  QUESTIONNAIRE_VERSION: "v2.0-etudiant-2026-10-20"
+  QUESTIONNAIRE_VERSION: "v3.0-2026-10-20"
+};
+
+/* Échelles de Davis (1987), annexe p. 32-33, adaptées à Deezer Étudiant.
+   Codage : 1 = pas du tout d'accord … 7 = tout à fait d'accord (sens inversé par rapport à l'article, plus courant en français).
+   inv = item formulé négativement dans l'article : à recoder (8 − score) avant de calculer le score et l'alpha de Cronbach. */
+const SCALES = {
+  pu: [
+    ["pu_01", "Utiliser Deezer Étudiant améliorerait la qualité de mes moments d'écoute musicale."],
+    ["pu_02", "Utiliser Deezer Étudiant me donnerait plus de contrôle sur ce que j'écoute."],
+    ["pu_03", "Deezer Étudiant me permettrait de trouver plus rapidement la musique que je veux écouter."],
+    ["pu_04", "Deezer Étudiant répondrait aux aspects essentiels de ma façon d'écouter de la musique."],
+    ["pu_05", "Utiliser Deezer Étudiant me ferait gagner du temps dans mon écoute de musique."],
+    ["pu_06", "Utiliser Deezer Étudiant améliorerait mon expérience d'écoute."],
+    ["pu_07", "Deezer Étudiant me permettrait d'écouter davantage de musique qu'aujourd'hui."],
+    ["pu_08", "Utiliser Deezer Étudiant rendrait mon écoute de musique plus efficace."],
+    ["pu_09", "Utiliser Deezer Étudiant me faciliterait l'écoute de musique au quotidien (révisions, trajets, sport…)."],
+    ["pu_10", "Globalement, je trouverais Deezer Étudiant utile dans ma vie de tous les jours."]
+  ],
+  peou: [
+    ["peou_01_inv", "Je trouverais l'application Deezer compliquée à utiliser."],
+    ["peou_02", "Apprendre à me servir de Deezer serait facile pour moi."],
+    ["peou_03_inv", "Utiliser Deezer serait souvent frustrant."],
+    ["peou_04", "Il me serait facile d'obtenir de Deezer ce que je veux (trouver un titre, créer une playlist…)."],
+    ["peou_05_inv", "L'application Deezer serait rigide et peu flexible à l'usage."],
+    ["peou_06", "Il me serait facile de me souvenir comment faire les actions courantes sur Deezer."],
+    ["peou_07_inv", "Utiliser Deezer me demanderait beaucoup d'effort de concentration."],
+    ["peou_08", "Mon utilisation de Deezer serait claire et compréhensible."],
+    ["peou_09_inv", "Il me faudrait beaucoup d'efforts pour bien maîtriser Deezer."],
+    ["peou_10", "Globalement, je trouverais Deezer facile à utiliser."]
+  ]
 };
 /* ========================================================== */
 
@@ -314,30 +374,37 @@ const store = {
   set(k,v){ try { sessionStorage.setItem(k,v); } catch(e){} }
 };
 
-// Tirage au sort à l'ouverture du questionnaire (conservé si la page est rechargée)
-let version = store.get("dze_version");
-if (TEST && /^[AB]$/.test(params.get("v") || "")) version = params.get("v");
-if (!version) { version = Math.random() < 0.5 ? "A" : "B"; }
-store.set("dze_version", version);
-document.getElementById("refSpotify").hidden = (version !== "B");
-
-const rid = store.get("dze_id") || ((crypto.randomUUID && crypto.randomUUID()) || (Date.now().toString(36) + Math.random().toString(36).slice(2)));
-store.set("dze_id", rid);
+const rid = store.get("dz3_id") || ((crypto.randomUUID && crypto.randomUUID()) || (Date.now().toString(36) + Math.random().toString(36).slice(2)));
+store.set("dz3_id", rid);
 const t0 = Date.now();
 let tOffer = null;
 
 if (!CONFIG.ENDPOINT || TEST) {
   const d = document.getElementById("demo");
   d.hidden = false;
-  d.textContent = (TEST ? "Mode test" : "Mode démo (aucune adresse d'enregistrement configurée)") + " – version affichée : " + version + ".";
+  d.textContent = TEST ? "Mode test : les réponses sont marquées test = 1" : "Mode démo (aucune adresse d'enregistrement configurée)";
 }
+
+// Construction des échelles à 7 points
+const ANCHORS = `<div class="anchors"><span>Pas du tout d'accord</span><span>Neutre</span><span>Tout à fait d'accord</span></div>`;
+Object.entries(SCALES).forEach(([sc, items]) => {
+  document.getElementById("box-" + sc).innerHTML = items.map(([k, txt], n) =>
+    `<div class="item" data-item="${k}"><span class="label"><span class="num">${n + 1}.</span>${txt}</span>` +
+    `<div class="l7" role="radiogroup">` +
+    [1,2,3,4,5,6,7].map(v => `<label><input type="radio" name="${k}" value="${v}" aria-label="${v} sur 7">${v}</label>`).join("") +
+    `</div>${ANCHORS}</div>`).join("");
+});
+document.addEventListener("change", e => {
+  const it = e.target.closest(".item");
+  if (it) it.classList.remove("missing");
+});
 
 // Gabor-Granger séquentiel
 const fmt = p => p.toFixed(2).replace(".", ",") + " €";
 const ggKey = p => "gg_" + p.toFixed(2).replace(".", "_");
 const prices = [...CONFIG.GG_PRICES].sort((a,b)=>a-b);
-let ggIdx = 0;          // prix actuellement affiché
-let ggAnswers = [];     // réponses réellement données (1 = oui, 0 = non), dans l'ordre d'affichage
+let ggIdx = 0;
+let ggAnswers = [];
 function ggRender(){
   const el = document.getElementById("ggPrice");
   el.textContent = fmt(prices[ggIdx]);
@@ -349,21 +416,10 @@ function ggReset(){ ggIdx = 0; ggAnswers = []; ggRender(); }
 function ggAnswer(yes){
   ggAnswers[ggIdx] = yes ? 1 : 0;
   if (yes && ggIdx < prices.length - 1) { ggIdx++; ggRender(); return; }
-  show(flow[flow.indexOf("gg") + 1]);   // « Non » ou dernier prix accepté : fin de la mesure
+  show(flow[flow.indexOf("gg") + 1]);
 }
 document.getElementById("ggOui").addEventListener("click", () => ggAnswer(true));
 document.getElementById("ggNon").addEventListener("click", () => ggAnswer(false));
-
-// Échelles de Likert (5 points, équilibrées) – centrées sur le prix et la valeur
-const LIKERT_ITEMS = [
-  ["lk_valeur", "Le prix de l'offre Deezer Étudiant est justifié par ce qu'elle apporte."],
-  ["lk_confiance", "Je ferais confiance à Deezer pour un abonnement sur la durée."]
-];
-const LIKERT_LABELS = ["Pas du tout d'accord","Plutôt pas d'accord","Ni d'accord ni pas d'accord","Plutôt d'accord","Tout à fait d'accord"];
-document.getElementById("likertBox").innerHTML = LIKERT_ITEMS.map(([k,txt]) =>
-  `<div class="q"><span class="label">${txt}</span><div class="likert">` +
-  LIKERT_LABELS.map((l,i)=>`<label><input type="radio" name="${k}" value="${i+1}">${l}</label>`).join("") +
-  `</div></div>`).join("");
 
 // Question « Qui paie » : seulement si la formule n'est pas gratuite
 const payeurBox = document.getElementById("qPayeur");
@@ -376,7 +432,7 @@ document.querySelectorAll('input[name="formule"]').forEach(i => i.addEventListen
 
 // Navigation
 const steps = [...document.querySelectorAll("section[data-step]")];
-const flow = ["accueil","filtre","offre","vw","gg","manip","perception","profil"];
+const flow = ["accueil","filtre","offre","vw","gg","pu","peou","profil"];
 let cur = "accueil";
 function radio(n){ const el = document.querySelector(`input[name="${n}"]:checked`); return el ? el.value : ""; }
 const money = id => {
@@ -386,9 +442,9 @@ const money = id => {
 };
 const ageVal = () => {
   const raw = document.getElementById("age").value.trim();
-  if (!/^\d{2}$/.test(raw)) return null;
+  if (!/^\d{1,2}$/.test(raw)) return null;
   const a = parseInt(raw, 10);
-  return (a >= 18 && a <= 99) ? a : null;
+  return (a >= 10 && a <= 99) ? a : null;
 };
 function show(name){
   steps.forEach(s => s.hidden = (s.dataset.step !== name));
@@ -401,15 +457,26 @@ function show(name){
   window.scrollTo(0,0);
 }
 function err(name, on){ const e = document.getElementById("err-" + name); if (e) e.classList.toggle("on", on); return !on; }
+function scaleOk(sc){
+  let first = null;
+  SCALES[sc].forEach(([k]) => {
+    const miss = !radio(k);
+    const it = document.querySelector(`.item[data-item="${k}"]`);
+    it.classList.toggle("missing", miss);
+    if (miss && !first) first = it;
+  });
+  if (first) first.scrollIntoView({ behavior: "smooth", block: "center" });
+  return err(sc, !!first);
+}
 
 const validate = {
-  accueil: () => err("accueil", !document.getElementById("consent").checked),
+  accueil: () => err("accueil", ageVal() === null || !document.getElementById("consent").checked),
   filtre:  () => err("filtre", !radio("f_etudiant") || !radio("f_streaming")),
   offre:   () => true,
   vw:      () => err("vw", ["vw_trop_bon_marche","vw_bon_marche","vw_cher","vw_trop_cher"].some(id => money(id) === null)),
-  manip:   () => err("manip", !radio("manip_check")),
-  perception: () => true,
-  profil:  () => err("profil", ageVal() === null || !radio("service") || !radio("formule") || (!payeurBox.hidden && !radio("payeur")))
+  pu:      () => scaleOk("pu"),
+  peou:    () => scaleOk("peou"),
+  profil:  () => err("profil", !radio("service") || !radio("frequence") || !radio("formule") || (!payeurBox.hidden && !radio("payeur")))
 };
 
 document.addEventListener("click", e => {
@@ -419,6 +486,7 @@ document.addEventListener("click", e => {
   if (b.hasAttribute("data-prev") && i > 0) { show(flow[i-1]); return; }
   if (!b.hasAttribute("data-next")) return;
   if (!validate[cur]()) return;
+  if (cur === "accueil" && ageVal() < 18) { show("mineur"); return; }   // moins de 18 ans : arrêt, rien n'est envoyé
   if (cur === "filtre") {
     const cible = radio("f_etudiant") === "oui" && radio("f_streaming") === "oui";
     if (!cible) { send("hors_cible"); show("hors_cible"); return; }
@@ -430,10 +498,10 @@ document.addEventListener("click", e => {
 function collect(statut){
   const d = {
     id_repondant: rid,
-    version: version,
     statut: statut,
     test: TEST ? 1 : 0,
     questionnaire: CONFIG.QUESTIONNAIRE_VERSION,
+    age: ageVal(),
     f_etudiant: radio("f_etudiant"),
     f_streaming: radio("f_streaming"),
     duree_totale_sec: Math.round((Date.now() - t0) / 1000),
@@ -442,19 +510,21 @@ function collect(statut){
   if (statut !== "complet") return d;
   const vw = ["vw_trop_bon_marche","vw_bon_marche","vw_cher","vw_trop_cher"];
   vw.forEach(id => d[id] = money(id));
-  // Indicateur de cohérence (calculé, les réponses brutes restent dans le fichier)
   d.vw_coherent = (d.vw_trop_bon_marche < d.vw_bon_marche && d.vw_bon_marche < d.vw_cher && d.vw_cher < d.vw_trop_cher) ? 1 : 0;
-  // Gabor-Granger séquentiel : 1 = oui, 0 = non (réponse donnée ou déduite : après un « Non », les prix plus élevés sont comptés « Non »)
+  // Gabor-Granger séquentiel : 1 = oui, 0 = non (après un « Non », les prix plus élevés sont comptés « Non »)
   const refus = ggAnswers.indexOf(0);
   prices.forEach((p, k) => d[ggKey(p)] = (refus === -1 || k < refus) ? 1 : 0);
   d.gg_prix_max_accepte = refus === 0 ? "" : prices[(refus === -1 ? prices.length : refus) - 1];
   d.gg_premier_refus = refus === -1 ? "" : prices[refus];
   d.gg_nb_prix_vus = ggAnswers.length;
-  d.manip_check = radio("manip_check");
-  d.manip_check_correct = ((version === "B" && d.manip_check === "oui") || (version === "A" && d.manip_check === "non")) ? 1 : 0;
-  LIKERT_ITEMS.forEach(([k]) => d[k] = radio(k) ? parseInt(radio(k), 10) : "");
-  d.age = ageVal();
+  // Échelles de Davis : réponses brutes (1 à 7) + scores moyens calculés après recodage des items inversés
+  Object.entries(SCALES).forEach(([sc, items]) => {
+    let sum = 0;
+    items.forEach(([k]) => { const v = parseInt(radio(k), 10); d[k] = v; sum += k.endsWith("_inv") ? 8 - v : v; });
+    d["score_" + sc] = Math.round(sum / items.length * 100) / 100;
+  });
   d.service = radio("service");
+  d.frequence = parseInt(radio("frequence"), 10);
   d.formule = radio("formule");
   d.payeur = d.formule === "gratuite" ? "sans_objet" : radio("payeur");
   return d;
@@ -462,12 +532,12 @@ function collect(statut){
 
 async function send(statut){
   const data = collect(statut);
-  if (store.get("dze_sent_" + statut)) return;          // évite les doublons en cas de double clic
+  if (store.get("dz3_sent_" + statut)) return;
   if (!CONFIG.ENDPOINT) { console.log("Réponse (mode démo, non envoyée) :", data); window.__lastPayload = data; return; }
   try {
     await fetch(CONFIG.ENDPOINT, { method: "POST", mode: "no-cors",
       headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) });
-    store.set("dze_sent_" + statut, "1");
+    store.set("dz3_sent_" + statut, "1");
   } catch (e) {
     document.getElementById("merciMsg").textContent = "Un problème de connexion a empêché l'envoi. Vérifiez votre connexion puis rechargez la page : désolé pour la gêne.";
   }
