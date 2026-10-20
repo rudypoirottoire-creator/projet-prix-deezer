@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Étude – abonnements musicaux familiaux</title>
+<title>Étude – abonnements musicaux étudiants</title>
 <style>
   :root{
     --bg:#f6f5f2; --card:#ffffff; --ink:#1d1d1f; --muted:#5f6368; --line:#dedbd4;
@@ -18,6 +18,8 @@
   body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
   main{max-width:640px;margin:0 auto;padding:16px 16px 48px}
   header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0 12px;color:var(--muted);font-size:14px}
+  .brand{display:flex;align-items:center;gap:8px}
+  .brand svg{width:22px;height:22px;flex:none}
   .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:16px}
   .bar>i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
@@ -27,11 +29,12 @@
   .muted{color:var(--muted);font-size:14px}
   .q{margin:20px 0 0;padding-top:16px;border-top:1px solid var(--line)}
   .q:first-of-type{border-top:0;padding-top:0}
+  .q[hidden]{display:none}
   .q>.label{font-weight:600;display:block;margin-bottom:8px}
   .opts{display:grid;gap:8px}
   .opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;cursor:pointer}
   .opt:has(input:checked){border-color:var(--accent);background:var(--soft)}
-  .opt input{accent-color:var(--accent);width:18px;height:18px;margin:0}
+  .opt input{accent-color:var(--accent);width:18px;height:18px;margin:0;flex:none}
   .money{display:flex;align-items:center;gap:8px}
   .money input{width:130px;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
   .offer{border:2px solid var(--accent);border-radius:14px;padding:18px;margin:12px 0}
@@ -39,35 +42,44 @@
   .offer ul{margin:8px 0 0;padding-left:20px}
   .offer li{margin:4px 0}
   .ref{margin-top:14px;padding:10px 12px;border-radius:10px;background:var(--soft);font-weight:600}
-  table.gg{width:100%;border-collapse:collapse;margin-top:8px}
-  table.gg th,table.gg td{padding:10px 6px;border-bottom:1px solid var(--line);text-align:center}
-  table.gg th:first-child,table.gg td:first-child{text-align:left;font-weight:600}
-  table.gg input{width:20px;height:20px;accent-color:var(--accent)}
+  .gg-box{margin:16px 0 4px;padding:22px 16px;border:1px solid var(--line);border-radius:14px;text-align:center}
+  .gg-price{font-size:34px;font-weight:700;line-height:1.1;margin:4px 0 2px}
+  .gg-q{margin:0 0 16px}
+  .gg-btns{display:flex;justify-content:center;gap:12px}
+  .gg-btns button{min-width:120px}
+  .gg-count{margin-top:12px}
   .likert{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
   .likert label{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-size:12px;color:var(--muted);padding:8px 2px;border:1px solid var(--line);border-radius:10px;cursor:pointer}
   .likert label:has(input:checked){border-color:var(--accent);background:var(--soft);color:var(--ink)}
   .likert input{accent-color:var(--accent);width:18px;height:18px;margin:0}
   .nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px}
   button{font:inherit;font-weight:600;border-radius:10px;padding:12px 18px;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink)}
-  button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);margin-left:auto}
+  button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+  .nav button.primary{margin-left:auto}
   button:disabled{opacity:.5;cursor:default}
   .err{display:none;margin-top:14px;padding:10px 12px;border-radius:10px;background:var(--warn-bg);color:var(--warn);font-size:14px}
   .err.on{display:block}
   .demo{margin-bottom:12px;padding:8px 12px;border-radius:10px;background:var(--warn-bg);color:var(--warn);font-size:13px}
   section[hidden]{display:none}
-  @media (max-width:420px){ .likert label{font-size:11px} table.gg th,table.gg td{padding:8px 4px} }
+  @media (max-width:420px){ .likert label{font-size:11px} }
 </style>
 </head>
 <body>
 <main>
   <div id="demo" class="demo" hidden></div>
-  <header><span>Étude – IAE Clermont Auvergne</span><span id="stepLabel"></span></header>
+  <header>
+    <span class="brand">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 18.5a2.5 2.5 0 1 1-2-2.45V5.2l11-2.2v12.5a2.5 2.5 0 1 1-2-2.45V7.3l-7 1.4z"/></svg>
+      Étude – IAE Clermont Auvergne
+    </span>
+    <span id="stepLabel"></span>
+  </header>
   <div class="bar"><i id="progress"></i></div>
 
   <!-- 1. ACCUEIL ET CONSENTEMENT -->
   <section class="card" data-step="accueil">
-    <h1>Les abonnements musicaux en famille</h1>
-    <p>Nous sommes un groupe d'étudiants en Master 1 à l'IAE Clermont Auvergne (Université Clermont Auvergne). Dans le cadre d'un cours sur la fixation des prix, nous étudions le prix des abonnements musicaux partagés en famille.</p>
+    <h1>Les abonnements musicaux des étudiants</h1>
+    <p>Nous sommes un groupe d'étudiants en Master 1 à l'IAE Clermont Auvergne (Université Clermont Auvergne). Dans le cadre d'un cours sur la fixation des prix, nous étudions le prix des abonnements musicaux étudiants.</p>
     <p>Le questionnaire prend environ <strong>3 minutes</strong>. Il n'y a pas de bonne ou de mauvaise réponse : seul votre avis compte.</p>
     <p class="muted"><strong>Vos données :</strong> le questionnaire est anonyme. Nous ne demandons ni nom, ni adresse e-mail, et nous n'enregistrons pas votre adresse IP. Les réponses servent uniquement à ce travail universitaire, ne sont pas transmises à une entreprise et seront supprimées à la fin de l'année universitaire. Vous pouvez arrêter à tout moment : rien n'est enregistré tant que vous n'avez pas terminé.</p>
     <div class="q">
@@ -81,20 +93,17 @@
   <section class="card" data-step="filtre" hidden>
     <h2>Pour commencer</h2>
     <div class="q">
+      <span class="label">Êtes-vous actuellement étudiant·e (université, école, BTS, BUT…) ?</span>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="f_etudiant" value="oui"> Oui</label>
+        <label class="opt"><input type="radio" name="f_etudiant" value="non"> Non</label>
+      </div>
+    </div>
+    <div class="q">
       <span class="label">Écoutez-vous de la musique sur un service de streaming (Deezer, Spotify, Apple Music, YouTube Music, Amazon Music…), y compris en version gratuite ?</span>
       <div class="opts">
         <label class="opt"><input type="radio" name="f_streaming" value="oui"> Oui</label>
         <label class="opt"><input type="radio" name="f_streaming" value="non"> Non</label>
-      </div>
-    </div>
-    <div class="q">
-      <span class="label">Combien de personnes, vous compris, vivent dans votre foyer ?</span>
-      <p class="muted">Votre foyer : les personnes avec qui vous partagez votre logement principal (conjoint, enfants, parents…).</p>
-      <div class="opts">
-        <label class="opt"><input type="radio" name="f_foyer" value="1"> 1 (je vis seul·e)</label>
-        <label class="opt"><input type="radio" name="f_foyer" value="2"> 2</label>
-        <label class="opt"><input type="radio" name="f_foyer" value="3_a_6"> 3 à 6</label>
-        <label class="opt"><input type="radio" name="f_foyer" value="7_plus"> 7 ou plus</label>
       </div>
     </div>
     <div class="err" id="err-filtre">Merci de répondre aux deux questions.</div>
@@ -106,24 +115,24 @@
     <h2>L'offre étudiée</h2>
     <p>Lisez attentivement cette offre : les questions suivantes portent sur son <strong>prix par mois</strong>.</p>
     <div class="offer">
-      <h2>Deezer Famille</h2>
+      <h2>Deezer Étudiant</h2>
       <ul>
-        <li>Jusqu'à 6 comptes Premium séparés, pour les membres d'un même foyer</li>
-        <li>Musique sans publicité, sur téléphone, ordinateur, TV et enceintes</li>
+        <li>1 compte Premium, réservé aux étudiant·e·s de 18 à 25 ans</li>
+        <li>Musique sans publicité, tous les titres au choix</li>
         <li>Téléchargement des titres pour écouter sans connexion</li>
         <li>Son haute fidélité</li>
         <li>Sans engagement : résiliable à tout moment</li>
       </ul>
       <!-- Seule différence entre A et B : ce paragraphe n'existe que dans la version B -->
-      <p class="ref" id="refSpotify" hidden>À titre de comparaison : chez Spotify, l'offre Famille équivalente (jusqu'à 6 comptes) coûte 21,24 € par mois.</p>
+      <p class="ref" id="refSpotify" hidden>À titre de comparaison : chez Spotify, l'offre Étudiants équivalente coûte 7,07 € par mois.</p>
     </div>
     <div class="nav"><button data-prev>Précédent</button><button class="primary" data-next>Suivant</button></div>
   </section>
 
-  <!-- 4a. MESURE : VAN WESTENDORP (ordre fixe, réponse libre en euros) -->
+  <!-- 4. MESURE : VAN WESTENDORP (ordre fixe, réponse libre en euros) -->
   <section class="card" data-step="vw" hidden>
-    <h2>Le prix de l'offre Deezer Famille</h2>
-    <p class="muted">Indiquez à chaque fois un montant en euros, par mois, pour l'ensemble du foyer. Répondez spontanément.</p>
+    <h2>Le prix de l'offre Deezer Étudiant</h2>
+    <p class="muted">Indiquez à chaque fois un montant en euros, par mois. Répondez spontanément.</p>
     <div class="q">
       <label class="label" for="vw_trop_bon_marche">À quel prix par mois trouveriez-vous cette offre si bon marché que vous douteriez de sa qualité ?</label>
       <div class="money"><input id="vw_trop_bon_marche" inputmode="decimal" autocomplete="off" placeholder="0,00"> € / mois</div>
@@ -140,38 +149,43 @@
       <label class="label" for="vw_trop_cher">À quel prix par mois trouveriez-vous cette offre trop chère pour l'envisager ?</label>
       <div class="money"><input id="vw_trop_cher" inputmode="decimal" autocomplete="off" placeholder="0,00"> € / mois</div>
     </div>
-    <div class="err" id="err-vw">Merci d'indiquer un montant en euros pour chacune des quatre questions (exemple : 18,50).</div>
+    <div class="err" id="err-vw">Merci d'indiquer un montant en euros pour chacune des quatre questions (exemple : 6,50).</div>
     <div class="nav"><button data-prev>Précédent</button><button class="primary" data-next>Suivant</button></div>
   </section>
 
-  <!-- 4b. MESURE : GABOR-GRANGER (ordre croissant, identique pour tous) -->
+  <!-- 5. MESURE : GABOR-GRANGER SÉQUENTIEL (un prix à la fois, ordre croissant, arrêt au premier « Non ») -->
   <section class="card" data-step="gg" hidden>
-    <h2>Et à ces prix-là ?</h2>
-    <p>Pour chacun des prix ci-dessous, prendriez-vous cette offre Deezer Famille pour votre foyer (ou la garderiez-vous si vous l'avez déjà) ?</p>
-    <table class="gg">
-      <thead><tr><th>Prix par mois</th><th>Oui</th><th>Non</th></tr></thead>
-      <tbody id="ggBody"></tbody>
-    </table>
-    <div class="err" id="err-gg">Merci de répondre pour chaque prix.</div>
-    <div class="nav"><button data-prev>Précédent</button><button class="primary" data-next>Suivant</button></div>
+    <h2>Et à ce prix-là ?</h2>
+    <p>Nous allons vous proposer des prix, un par un.</p>
+    <div class="gg-box">
+      <p class="gg-q">Prendriez-vous l'offre Deezer Étudiant (ou la garderiez-vous si vous l'avez déjà) à</p>
+      <div class="gg-price" id="ggPrice"></div>
+      <p class="muted">par mois ?</p>
+      <div class="gg-btns">
+        <button type="button" id="ggNon">Non</button>
+        <button type="button" class="primary" id="ggOui">Oui</button>
+      </div>
+      <p class="muted gg-count" id="ggCount"></p>
+    </div>
+    <div class="nav"><button data-prev>Précédent</button></div>
   </section>
 
-  <!-- 5. CONTRÔLE -->
-  <section class="card" data-step="controle" hidden>
+  <!-- 6. MANIPULATION CHECK (vérifie que la variable manipulée – la référence Spotify – a bien été perçue) -->
+  <section class="card" data-step="manip" hidden>
     <h2>Une question sur la présentation</h2>
     <div class="q">
-      <span class="label">Dans la présentation de l'offre Deezer Famille, le prix d'un service concurrent était-il indiqué ?</span>
+      <span class="label">Dans la présentation de l'offre Deezer Étudiant, le prix d'un service concurrent était-il indiqué ?</span>
       <div class="opts">
-        <label class="opt"><input type="radio" name="controle" value="oui"> Oui</label>
-        <label class="opt"><input type="radio" name="controle" value="non"> Non</label>
-        <label class="opt"><input type="radio" name="controle" value="ne_sait_plus"> Je ne m'en souviens pas</label>
+        <label class="opt"><input type="radio" name="manip_check" value="oui"> Oui</label>
+        <label class="opt"><input type="radio" name="manip_check" value="non"> Non</label>
+        <label class="opt"><input type="radio" name="manip_check" value="ne_sait_plus"> Je ne m'en souviens pas</label>
       </div>
     </div>
-    <div class="err" id="err-controle">Merci de choisir une réponse.</div>
+    <div class="err" id="err-manip">Merci de choisir une réponse.</div>
     <div class="nav"><button class="primary" data-next>Suivant</button></div>
   </section>
 
-  <!-- 6. PERCEPTION (Likert, optionnel) -->
+  <!-- 7. PERCEPTION (Likert, optionnel) -->
   <section class="card" data-step="perception" hidden>
     <h2>Votre avis</h2>
     <p class="muted">Facultatif : vous pouvez passer les phrases sur lesquelles vous n'avez pas d'avis.</p>
@@ -179,18 +193,12 @@
     <div class="nav"><button data-prev>Précédent</button><button class="primary" data-next>Suivant</button></div>
   </section>
 
-  <!-- 7. PROFIL -->
+  <!-- 8. PROFIL -->
   <section class="card" data-step="profil" hidden>
     <h2>Pour finir, quelques mots sur vous</h2>
     <div class="q">
-      <span class="label">Votre âge</span>
-      <div class="opts">
-        <label class="opt"><input type="radio" name="age" value="18_24"> 18 à 24 ans</label>
-        <label class="opt"><input type="radio" name="age" value="25_34"> 25 à 34 ans</label>
-        <label class="opt"><input type="radio" name="age" value="35_49"> 35 à 49 ans</label>
-        <label class="opt"><input type="radio" name="age" value="50_64"> 50 à 64 ans</label>
-        <label class="opt"><input type="radio" name="age" value="65_plus"> 65 ans ou plus</label>
-      </div>
+      <label class="label" for="age">Quel âge avez-vous ?</label>
+      <div class="money"><input id="age" inputmode="numeric" autocomplete="off" maxlength="3" placeholder="ex. 21"> ans</div>
     </div>
     <div class="q">
       <span class="label">Quel service de musique utilisez-vous le plus ?</span>
@@ -207,23 +215,23 @@
       <span class="label">Avec quelle formule ?</span>
       <div class="opts">
         <label class="opt"><input type="radio" name="formule" value="gratuite"> Gratuite (avec publicité)</label>
-        <label class="opt"><input type="radio" name="formule" value="individuelle"> Payante individuelle</label>
         <label class="opt"><input type="radio" name="formule" value="etudiante"> Payante étudiante</label>
+        <label class="opt"><input type="radio" name="formule" value="individuelle"> Payante individuelle</label>
         <label class="opt"><input type="radio" name="formule" value="duo"> Payante Duo (2 personnes)</label>
-        <label class="opt"><input type="radio" name="formule" value="famille"> Payante Famille</label>
+        <label class="opt"><input type="radio" name="formule" value="famille"> Payante Famille (je suis sur le compte d'un proche ou je le partage)</label>
         <label class="opt"><input type="radio" name="formule" value="ne_sait_pas"> Je ne sais pas</label>
       </div>
     </div>
-    <div class="q">
+    <div class="q" id="qPayeur" hidden>
       <span class="label">Qui paie cet abonnement ?</span>
       <div class="opts">
         <label class="opt"><input type="radio" name="payeur" value="moi"> Moi</label>
-        <label class="opt"><input type="radio" name="payeur" value="autre_personne"> Une autre personne du foyer</label>
+        <label class="opt"><input type="radio" name="payeur" value="parents_proche"> Mes parents ou un proche</label>
         <label class="opt"><input type="radio" name="payeur" value="partage"> Nous partageons le coût</label>
-        <label class="opt"><input type="radio" name="payeur" value="sans_objet"> Personne (formule gratuite)</label>
+        <label class="opt"><input type="radio" name="payeur" value="inclus"> Il est inclus dans un autre abonnement (box, forfait mobile…)</label>
       </div>
     </div>
-    <div class="err" id="err-profil">Merci de répondre aux quatre questions.</div>
+    <div class="err" id="err-profil">Merci de répondre à toutes les questions (âge en chiffres, entre 18 et 99 ans).</div>
     <div class="nav"><button data-prev>Précédent</button><button class="primary" data-next id="btnSend">Envoyer mes réponses</button></div>
   </section>
 
@@ -231,12 +239,12 @@
   <section class="card" data-step="merci" hidden>
     <h1>Merci !</h1>
     <p id="merciMsg">Vos réponses ont bien été enregistrées. Merci pour votre aide.</p>
-    <p class="muted">Vous pouvez fermer cette page. Si vous connaissez d'autres personnes vivant dans un foyer de 3 personnes ou plus, n'hésitez pas à leur transmettre le lien.</p>
+    <p class="muted">Vous pouvez fermer cette page. Si vous connaissez d'autres étudiant·e·s, n'hésitez pas à leur transmettre le lien.</p>
   </section>
 
   <section class="card" data-step="hors_cible" hidden>
     <h1>Merci pour votre réponse</h1>
-    <p>Cette étude s'adresse aux personnes qui écoutent de la musique en streaming et vivent dans un foyer d'au moins 3 personnes. Vous n'êtes donc pas concerné·e par la suite du questionnaire.</p>
+    <p>Cette étude s'adresse aux étudiant·e·s qui écoutent de la musique en streaming. Vous n'êtes donc pas concerné·e par la suite du questionnaire.</p>
     <p class="muted">Vous pouvez fermer cette page.</p>
   </section>
 </main>
@@ -246,10 +254,10 @@
 const CONFIG = {
   // URL de l'application web Google Apps Script (voir apps-script.gs). Vide = mode démo, rien n'est envoyé.
   ENDPOINT: "https://script.google.com/macros/s/AKfycbwDsWpqnHyb9Y0uERW2C3zXWXd18d4oB7beMNe8ev0PF75aKWWG5VUqkWsDtEAU02vQ/exec",
-  // Gabor-Granger : prix soumis, du plancher provisoire au plafond concurrentiel (Spotify Famille 21,24 €)
-  GG_PRICES: [15.99, 17.49, 18.99, 19.99, 20.49, 20.99, 21.24],
-  GG_ORDER: "croissant",   // ordre fixe, identique pour tous les répondants
-  QUESTIONNAIRE_VERSION: "v1.1-2026-10-12"
+  // Gabor-Granger séquentiel : prix proposés un par un, du plus bas au plus haut, arrêt au premier « Non ».
+  // Deezer Étudiant 5,99 € ; plafond concurrentiel Spotify Étudiants 7,07 € (spotify.com/fr/premium, 20/10/2026).
+  GG_PRICES: [4.99, 5.49, 5.99, 6.29, 6.49, 6.79, 7.07],
+  QUESTIONNAIRE_VERSION: "v2.0-etudiant-2026-10-20"
 };
 /* ========================================================== */
 
@@ -261,14 +269,14 @@ const store = {
 };
 
 // Tirage au sort à l'ouverture du questionnaire (conservé si la page est rechargée)
-let version = store.get("dz_version");
+let version = store.get("dze_version");
 if (TEST && /^[AB]$/.test(params.get("v") || "")) version = params.get("v");
 if (!version) { version = Math.random() < 0.5 ? "A" : "B"; }
-store.set("dz_version", version);
+store.set("dze_version", version);
 document.getElementById("refSpotify").hidden = (version !== "B");
 
-const rid = store.get("dz_id") || ((crypto.randomUUID && crypto.randomUUID()) || (Date.now().toString(36) + Math.random().toString(36).slice(2)));
-store.set("dz_id", rid);
+const rid = store.get("dze_id") || ((crypto.randomUUID && crypto.randomUUID()) || (Date.now().toString(36) + Math.random().toString(36).slice(2)));
+store.set("dze_id", rid);
 const t0 = Date.now();
 let tOffer = null;
 
@@ -278,20 +286,29 @@ if (!CONFIG.ENDPOINT || TEST) {
   d.textContent = (TEST ? "Mode test" : "Mode démo (aucune adresse d'enregistrement configurée)") + " – version affichée : " + version + ".";
 }
 
-// Grille Gabor-Granger
+// Gabor-Granger séquentiel
 const fmt = p => p.toFixed(2).replace(".", ",") + " €";
 const ggKey = p => "gg_" + p.toFixed(2).replace(".", "_");
-const prices = CONFIG.GG_ORDER === "croissant" ? [...CONFIG.GG_PRICES].sort((a,b)=>a-b) : [...CONFIG.GG_PRICES].sort((a,b)=>b-a);
-document.getElementById("ggBody").innerHTML = prices.map(p =>
-  `<tr><td>${fmt(p)}</td>
-   <td><input type="radio" name="${ggKey(p)}" value="1" aria-label="Oui à ${fmt(p)}"></td>
-   <td><input type="radio" name="${ggKey(p)}" value="0" aria-label="Non à ${fmt(p)}"></td></tr>`).join("");
+const prices = [...CONFIG.GG_PRICES].sort((a,b)=>a-b);
+let ggIdx = 0;          // prix actuellement affiché
+let ggAnswers = [];     // réponses réellement données (1 = oui, 0 = non), dans l'ordre d'affichage
+function ggRender(){
+  document.getElementById("ggPrice").textContent = fmt(prices[ggIdx]);
+  document.getElementById("ggCount").textContent = `Prix ${ggIdx + 1} sur ${prices.length} au maximum`;
+}
+function ggReset(){ ggIdx = 0; ggAnswers = []; ggRender(); }
+function ggAnswer(yes){
+  ggAnswers[ggIdx] = yes ? 1 : 0;
+  if (yes && ggIdx < prices.length - 1) { ggIdx++; ggRender(); return; }
+  show(flow[flow.indexOf("gg") + 1]);   // « Non » ou dernier prix accepté : fin de la mesure
+}
+document.getElementById("ggOui").addEventListener("click", () => ggAnswer(true));
+document.getElementById("ggNon").addEventListener("click", () => ggAnswer(false));
 
-// Échelles de Likert (5 points, équilibrées)
+// Échelles de Likert (5 points, équilibrées) – centrées sur le prix et la valeur
 const LIKERT_ITEMS = [
-  ["lk_valeur", "L'offre Deezer Famille apporterait beaucoup à mon foyer."],
-  ["lk_qualite", "Deezer est un service de musique de qualité."],
-  ["lk_confiance", "Je ferais confiance à Deezer pour un abonnement familial sur la durée."]
+  ["lk_valeur", "Le prix de l'offre Deezer Étudiant est justifié par ce qu'elle apporte."],
+  ["lk_confiance", "Je ferais confiance à Deezer pour un abonnement sur la durée."]
 ];
 const LIKERT_LABELS = ["Pas du tout d'accord","Plutôt pas d'accord","Ni d'accord ni pas d'accord","Plutôt d'accord","Tout à fait d'accord"];
 document.getElementById("likertBox").innerHTML = LIKERT_ITEMS.map(([k,txt]) =>
@@ -299,15 +316,30 @@ document.getElementById("likertBox").innerHTML = LIKERT_ITEMS.map(([k,txt]) =>
   LIKERT_LABELS.map((l,i)=>`<label><input type="radio" name="${k}" value="${i+1}">${l}</label>`).join("") +
   `</div></div>`).join("");
 
+// Question « Qui paie » : seulement si la formule n'est pas gratuite
+const payeurBox = document.getElementById("qPayeur");
+function majPayeur(){
+  const f = radio("formule");
+  payeurBox.hidden = (f === "" || f === "gratuite");
+  if (payeurBox.hidden) document.querySelectorAll('input[name="payeur"]').forEach(i => i.checked = false);
+}
+document.querySelectorAll('input[name="formule"]').forEach(i => i.addEventListener("change", majPayeur));
+
 // Navigation
 const steps = [...document.querySelectorAll("section[data-step]")];
-const flow = ["accueil","filtre","offre","vw","gg","controle","perception","profil"];
+const flow = ["accueil","filtre","offre","vw","gg","manip","perception","profil"];
 let cur = "accueil";
-const radio = n => { const el = document.querySelector(`input[name="${n}"]:checked`); return el ? el.value : ""; };
+function radio(n){ const el = document.querySelector(`input[name="${n}"]:checked`); return el ? el.value : ""; }
 const money = id => {
   const raw = document.getElementById(id).value.trim().replace(/€/g,"").replace(/\s/g,"").replace(",", ".");
   if (raw === "" || !/^\d+(\.\d+)?$/.test(raw)) return null;
   return Math.round(parseFloat(raw) * 100) / 100;
+};
+const ageVal = () => {
+  const raw = document.getElementById("age").value.trim();
+  if (!/^\d{2}$/.test(raw)) return null;
+  const a = parseInt(raw, 10);
+  return (a >= 18 && a <= 99) ? a : null;
 };
 function show(name){
   steps.forEach(s => s.hidden = (s.dataset.step !== name));
@@ -316,19 +348,19 @@ function show(name){
   document.getElementById("progress").style.width = (i < 0 ? 100 : Math.round(i / flow.length * 100)) + "%";
   document.getElementById("stepLabel").textContent = i >= 0 ? `Étape ${i+1} sur ${flow.length}` : "";
   if (name === "offre" && !tOffer) tOffer = Date.now();
+  if (name === "gg") ggReset();
   window.scrollTo(0,0);
 }
 function err(name, on){ const e = document.getElementById("err-" + name); if (e) e.classList.toggle("on", on); return !on; }
 
 const validate = {
   accueil: () => err("accueil", !document.getElementById("consent").checked),
-  filtre:  () => err("filtre", !radio("f_streaming") || !radio("f_foyer")),
+  filtre:  () => err("filtre", !radio("f_etudiant") || !radio("f_streaming")),
   offre:   () => true,
   vw:      () => err("vw", ["vw_trop_bon_marche","vw_bon_marche","vw_cher","vw_trop_cher"].some(id => money(id) === null)),
-  gg:      () => err("gg", prices.some(p => !radio(ggKey(p)))),
-  controle:() => err("controle", !radio("controle")),
+  manip:   () => err("manip", !radio("manip_check")),
   perception: () => true,
-  profil:  () => err("profil", ["age","service","formule","payeur"].some(n => !radio(n)))
+  profil:  () => err("profil", ageVal() === null || !radio("service") || !radio("formule") || (!payeurBox.hidden && !radio("payeur")))
 };
 
 document.addEventListener("click", e => {
@@ -339,7 +371,7 @@ document.addEventListener("click", e => {
   if (!b.hasAttribute("data-next")) return;
   if (!validate[cur]()) return;
   if (cur === "filtre") {
-    const cible = radio("f_streaming") === "oui" && (radio("f_foyer") === "3_a_6" || radio("f_foyer") === "7_plus");
+    const cible = radio("f_etudiant") === "oui" && radio("f_streaming") === "oui";
     if (!cible) { send("hors_cible"); show("hors_cible"); return; }
   }
   if (cur === "profil") { b.disabled = true; send("complet").then(() => show("merci")); return; }
@@ -353,37 +385,40 @@ function collect(statut){
     statut: statut,
     test: TEST ? 1 : 0,
     questionnaire: CONFIG.QUESTIONNAIRE_VERSION,
-    ordre_gg: CONFIG.GG_ORDER,
+    f_etudiant: radio("f_etudiant"),
     f_streaming: radio("f_streaming"),
-    f_foyer: radio("f_foyer"),
     duree_totale_sec: Math.round((Date.now() - t0) / 1000),
     duree_depuis_offre_sec: tOffer ? Math.round((Date.now() - tOffer) / 1000) : ""
   };
   if (statut !== "complet") return d;
   const vw = ["vw_trop_bon_marche","vw_bon_marche","vw_cher","vw_trop_cher"];
   vw.forEach(id => d[id] = money(id));
-  // Indicateurs de cohérence (calculés, les réponses brutes restent dans le fichier)
+  // Indicateur de cohérence (calculé, les réponses brutes restent dans le fichier)
   d.vw_coherent = (d.vw_trop_bon_marche < d.vw_bon_marche && d.vw_bon_marche < d.vw_cher && d.vw_cher < d.vw_trop_cher) ? 1 : 0;
-  const asc = [...CONFIG.GG_PRICES].sort((a,b)=>a-b);
-  asc.forEach(p => d[ggKey(p)] = parseInt(radio(ggKey(p)), 10));
-  let ok = 1;
-  for (let k = 1; k < asc.length; k++) if (d[ggKey(asc[k])] === 1 && d[ggKey(asc[k-1])] === 0) ok = 0;
-  d.gg_coherent = ok;
-  d.controle = radio("controle");
-  d.controle_correct = ((version === "B" && d.controle === "oui") || (version === "A" && d.controle === "non")) ? 1 : 0;
+  // Gabor-Granger séquentiel : 1 = oui, 0 = non (réponse donnée ou déduite : après un « Non », les prix plus élevés sont comptés « Non »)
+  const refus = ggAnswers.indexOf(0);
+  prices.forEach((p, k) => d[ggKey(p)] = (refus === -1 || k < refus) ? 1 : 0);
+  d.gg_prix_max_accepte = refus === 0 ? "" : prices[(refus === -1 ? prices.length : refus) - 1];
+  d.gg_premier_refus = refus === -1 ? "" : prices[refus];
+  d.gg_nb_prix_vus = ggAnswers.length;
+  d.manip_check = radio("manip_check");
+  d.manip_check_correct = ((version === "B" && d.manip_check === "oui") || (version === "A" && d.manip_check === "non")) ? 1 : 0;
   LIKERT_ITEMS.forEach(([k]) => d[k] = radio(k) ? parseInt(radio(k), 10) : "");
-  ["age","service","formule","payeur"].forEach(n => d[n] = radio(n));
+  d.age = ageVal();
+  d.service = radio("service");
+  d.formule = radio("formule");
+  d.payeur = d.formule === "gratuite" ? "sans_objet" : radio("payeur");
   return d;
 }
 
 async function send(statut){
   const data = collect(statut);
-  if (store.get("dz_sent_" + statut)) return;          // évite les doublons en cas de double clic
+  if (store.get("dze_sent_" + statut)) return;          // évite les doublons en cas de double clic
   if (!CONFIG.ENDPOINT) { console.log("Réponse (mode démo, non envoyée) :", data); window.__lastPayload = data; return; }
   try {
     await fetch(CONFIG.ENDPOINT, { method: "POST", mode: "no-cors",
       headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) });
-    store.set("dz_sent_" + statut, "1");
+    store.set("dze_sent_" + statut, "1");
   } catch (e) {
     document.getElementById("merciMsg").textContent = "Un problème de connexion a empêché l'envoi. Vérifiez votre connexion puis rechargez la page : désolé pour la gêne.";
   }
