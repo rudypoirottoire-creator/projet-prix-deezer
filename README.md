@@ -1,4 +1,4 @@
-# Projet prix Deezer — Master 1 DCIB, IAE Clermont Auvergne
+# Projet prix Deezer — Master 1 Marketing Vente, IAE Clermont Auvergne
 
 Projet de groupe du cours **« Prix et budgets marketing »** (M1, 2026-2027). Soutenance le **25 novembre 2026**.
 
