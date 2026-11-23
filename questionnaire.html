@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3. Le questionnaire – qui avons-nous interrogé ?</title>
+<link rel="icon" href="img/deezer-coeur.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="index.html"><img src="img/deezer-coeur.png" alt=""><span>Deezer Étudiant<small>Dossier prix · M1 Marketing Vente</small></span></a>
+  <nav aria-label="Pages du dossier"><a href="index.html">Accueil</a><a href="entreprise.html"><b>1</b>L'entreprise</a><a href="marche.html"><b>2</b>Le marché</a><a href="questionnaire.html" aria-current="page"><b>3</b>Le questionnaire</a><a href="resultats.html"><b>4</b>Les résultats</a><a href="decision.html"><b>5</b>La décision</a><a href="risques.html"><b>6</b>Les risques</a></nav>
+</div></header>
+<div class="hero"><div class="in">
+  <img class="heart" src="img/deezer-coeur.png" alt="">
+  <p class="eyebrow"><span class="step">Étape 3/6</span> Le questionnaire</p>
+  <h1>Nous avons interrogé de vrais étudiants</h1>
+  <p class="lead">Un questionnaire Van Westendorp en ligne, anonyme, de trois minutes. Toutes les réponses sont <a href="donnees/reponses.csv">téléchargeables</a>.</p>
+  
+</div></div>
+<main>
+<div class="stats"><div class="stat "><div class="v ">93</div><div class="l">personnes ont répondu</div><div class="s">du 20 au 25/10/2026</div></div><div class="stat b"><div class="v ">70</div><div class="l">réponses complètes d'étudiants</div><div class="s">23 hors cible</div></div><div class="stat g"><div class="v ">62</div><div class="l">réponses cohérentes analysées</div><div class="s">8 retirées</div></div><div class="stat k"><div class="v ">21 ans</div><div class="l">âge médian</div><div class="s">de 19 à 35 ans</div></div></div>
+
+<section>
+  <h2>Qui a répondu</h2>
+  <p class="intro">Diffusé du 20 au 25 octobre 2026 dans nos promotions, nos proches et sur les réseaux sociaux. Seuls les étudiants qui écoutent de la musique en streaming ont répondu jusqu'au bout.</p>
+  <div class="grid2">
+    <div class="card"><h3>De 93 personnes à 62 réponses analysées</h3>
+      <div class="funnel" style="margin-top:12px">
+        <div class="row"><b style="width:100%">93</b></div>
+        <div class="cut">− 23 hors cible : pas étudiant ou pas de streaming</div>
+        <div class="row"><b style="width:75%">70</b><span>réponses complètes</span></div>
+        <div class="cut">− 8 incohérentes : les 4 prix ne montent pas</div>
+        <div class="row"><b style="width:67%">62</b><span>réponses analysées</span></div>
+      </div>
+      <p class="src">Source : <a href="donnees/reponses.csv">nos réponses</a>, colonnes <code>statut</code> et <code>vw_coherent</code>.</p></div>
+    <div class="card"><h3>Service le plus utilisé (70 réponses)</h3>
+      <div class="bars" style="margin-top:12px"><div class="bar "><span>Spotify</span><div class="t"><i style="width:64.3%"></i></div><span class="v">64 %</span></div><div class="bar me"><span>Deezer</span><div class="t"><i style="width:17.1%"></i></div><span class="v">17 %</span></div><div class="bar "><span>Apple Music</span><div class="t"><i style="width:11.4%"></i></div><span class="v">11 %</span></div><div class="bar "><span>YouTube Music</span><div class="t"><i style="width:7.1%"></i></div><span class="v">7 %</span></div></div>
+      <p class="src">Part = nombre ÷ 70, par exemple <code>45 ÷ 70 = 64 %</code>. Source : <a href="donnees/reponses.csv">nos réponses</a>, colonne <code>service</code>.</p></div>
+  </div>
+</section>
+<section>
+  <h2>Ce que nous avons demandé</h2>
+  <p class="intro">Le répondant voit d'abord l'offre Deezer Étudiant décrite précisément, <b>sans aucun prix affiché</b>, comme le demande le <a href="https://prix.iae-mod.fr/seances/seance-cm-2.html">CM 2</a>. Puis il répond librement, en euros par mois, aux quatre questions de Van Westendorp :</p>
+  <div class="grid2">
+    <div class="tk"><div class="ic">1</div><div><h3>Trop bon marché</h3><p>À quel prix douteriez-vous de sa qualité ?</p></div></div>
+    <div class="tk g"><div class="ic">2</div><div><h3>Bon marché</h3><p>À quel prix est-ce une bonne affaire ?</p></div></div>
+    <div class="tk o"><div class="ic">3</div><div><h3>Cher</h3><p>À quel prix est-ce cher, mais envisageable ?</p></div></div>
+    <div class="tk"><div class="ic" style="background:#FDE2E2;color:#B91C1C">4</div><div><h3>Trop cher</h3><p>À quel prix ne l'envisagez-vous plus ?</p></div></div>
+  </div>
+  <p class="src">Le questionnaire est toujours en ligne : <a href="https://rudypoirottoire-creator.github.io/sondage-deezer/" target="_blank" rel="noopener">sondage Deezer</a>.</p>
+</section>
+<section>
+  <div class="verdict"><img src="img/deezer-coeur.png" alt=""><p><b>Un échantillon cohérent avec la cible :</b> 97 % des répondants ont entre 18 et 25 ans, l'âge exigé pour l'offre Deezer Étudiant. Mais il est dominé par les utilisateurs de Spotify : nous mesurons surtout le prix qui attirerait de <b>nouveaux</b> abonnés.</p></div>
+  <details class="more"><summary>Voir le profil détaillé des répondants</summary><div class="body">
+  <div class="table-wrap"><table><thead><tr><th>Profil des 70 réponses complètes</th><th class="n">Nombre</th><th class="n">Part</th></tr></thead><tbody>
+  <tr><td>Offre étudiante payante</td><td class="n">29</td><td class="n">41 %</td></tr>
+  <tr><td>Offre Famille (compte d'un proche ou partagé)</td><td class="n">26</td><td class="n">37 %</td></tr>
+  <tr><td>Offre gratuite</td><td class="n">9</td><td class="n">13 %</td></tr>
+  <tr><td>Offre individuelle / Duo</td><td class="n">4 / 2</td><td class="n">6 % / 3 %</td></tr>
+  <tr><td>Paient eux-mêmes leur abonnement</td><td class="n">32</td><td class="n">46 %</td></tr>
+  <tr><td>Âge médian (de 19 à 35 ans)</td><td class="n" colspan="2">21 ans</td></tr>
+  <tr><td>Entre 18 et 25 ans</td><td class="n">68</td><td class="n">97 %</td></tr>
+  </tbody></table></div>
+  <p class="src">Source : <a href="donnees/reponses.csv">nos réponses</a>, colonnes <code>formule</code>, <code>payeur</code> et <code>age</code>. Durée médiane de réponse : 2 min 29 s.</p></div></details>
+</section>
+<div class="pager"><a href="marche.html"><small>← Précédent</small><b>2. Le marché</b></a><a class="next" href="resultats.html"><small>Suivant →</small><b>4. Les résultats</b></a></div>
+</main>
+<footer><div class="in"><span>Rudy Poirot · Léo Dupré · Malik Adidou · Lenny Peissel · Yohan Ribeiro — M1 Marketing Vente, IAE Clermont Auvergne · novembre 2026</span><span>Étude universitaire indépendante. Deezer et Spotify sont des marques de leurs propriétaires.</span></div></footer>
+</body>
+</html>
