@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3. Notre mesure – le prix que les étudiants acceptent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="index.html">Deezer <span>Étudiant</span> · dossier prix</a>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="entreprise.html">1. L'entreprise</a>
+    <a href="marche.html">2. Le marché</a>
+    <a href="mesure.html" aria-current="page">3. Notre mesure</a>
+    <a href="proposition.html">4. La décision</a>
+  </nav>
+</div></header>
+
+<main>
+  <p class="kicker">3 · Notre mesure de prix psychologique</p>
+  <h1>Les étudiants acceptent l'offre entre 5,00 € et 7,99 €</h1>
+  <p class="lead">Nous avons interrogé de vrais étudiants avec la méthode de Van Westendorp. Résultat : une zone de prix acceptable de 5,00 € à 7,99 €, un prix optimal à 5,99 € (le prix actuel) et un prix d'indifférence à 6,98 €.</p>
+
+  <h2>Qui a répondu</h2>
+  <div class="kpis">
+    <div class="kpi"><b>93</b><span>personnes ont ouvert et validé le questionnaire</span></div>
+    <div class="kpi"><b>70</b><span>réponses complètes d'étudiants qui écoutent en streaming</span></div>
+    <div class="kpi"><b>62</b><span>réponses cohérentes retenues pour l'analyse</span></div>
+    <div class="kpi"><b>21 ans</b><span>âge médian (de 19 à 35 ans)</span></div>
+  </div>
+  <p>Le questionnaire a été diffusé du 20 au 25 octobre 2026, via nos promotions, nos proches et les réseaux sociaux. Les chiffres de cette page sont calculés à partir des réponses brutes, téléchargeables ici : <a href="donnees/reponses.csv">donnees/reponses.csv</a> (anonymes, une ligne par répondant).</p>
+  <ul>
+    <li><strong>23 personnes</strong> ont été écartées dès le filtre : elles n'étaient pas étudiantes ou n'écoutaient pas de musique en streaming (<a href="donnees/reponses.csv">colonne <code>statut</code> = hors_cible</a>).</li>
+    <li><strong>8 réponses</strong> ont été retirées de l'analyse parce que leurs quatre prix ne montaient pas (par exemple un prix « trop bon marché » supérieur au prix « bon marché ») : <a href="donnees/reponses.csv">colonne <code>vw_coherent</code> = 0</a>.</li>
+  </ul>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Profil des 70 réponses complètes</th><th class="n">Nombre</th><th class="n">Part</th></tr></thead>
+    <tbody>
+      <tr><td>Utilisent surtout Spotify</td><td class="n">45</td><td class="n">64 %</td></tr>
+      <tr><td>Utilisent surtout Deezer</td><td class="n">12</td><td class="n">17 %</td></tr>
+      <tr><td>Utilisent surtout Apple Music / YouTube Music</td><td class="n">8 / 5</td><td class="n">11 % / 7 %</td></tr>
+      <tr><td>Ont une offre étudiante payante</td><td class="n">29</td><td class="n">41 %</td></tr>
+      <tr><td>Sont sur une offre Famille</td><td class="n">26</td><td class="n">37 %</td></tr>
+      <tr><td>Utilisent une offre gratuite</td><td class="n">9</td><td class="n">13 %</td></tr>
+      <tr><td>Paient eux-mêmes leur abonnement</td><td class="n">32</td><td class="n">46 %</td></tr>
+      <tr><td>Ont entre 18 et 25 ans (âge d'éligibilité à Deezer Étudiant)</td><td class="n">68</td><td class="n">97 %</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Ce que nous avons demandé</h2>
+  <p>Le répondant voit d'abord l'offre Deezer Étudiant décrite précisément (1 compte Premium, sans publicité, écoute hors connexion, son haute fidélité, sans engagement), <strong>sans aucun prix affiché</strong>, ni celui de Deezer ni celui d'un concurrent, pour ne pas orienter les réponses. C'est la consigne du cours : « le répondant doit d'abord voir l'offre décrite précisément » (<a href="https://prix.iae-mod.fr/seances/seance-cm-2.html" target="_blank" rel="noopener">CM 2</a>). Il répond ensuite librement, en euros par mois, aux quatre questions de Van Westendorp, toujours dans le même ordre :</p>
+  <ol>
+    <li>À quel prix trouveriez-vous cette offre <strong>si bon marché</strong> que vous douteriez de sa qualité ?</li>
+    <li>À quel prix la trouveriez-vous <strong>bon marché</strong>, c'est-à-dire une bonne affaire ?</li>
+    <li>À quel prix la trouveriez-vous <strong>chère</strong>, tout en l'envisageant quand même ?</li>
+    <li>À quel prix la trouveriez-vous <strong>trop chère</strong> pour l'envisager ?</li>
+  </ol>
+  <p class="note">Le questionnaire est toujours en ligne : <a href="https://rudypoirottoire-creator.github.io/sondage-deezer/" target="_blank" rel="noopener">sondage Deezer</a>.</p>
+
+  <h2>Les résultats de Van Westendorp</h2>
+  <figure>
+    <img src="donnees/van-westendorp.svg" alt="Courbes cumulées de Van Westendorp : zone acceptable de 5,00 € à 7,99 €, prix optimal 5,99 €, prix d'indifférence 6,98 €, Spotify à 7,07 €.">
+    <figcaption>Courbes cumulées des 62 réponses cohérentes. Les courbes « trop bon marché » et « bon marché » donnent la part de répondants pour qui un prix est encore assez bas ; « cher » et « trop cher », la part pour qui il est déjà trop haut. Zone violette : prix acceptables. Source : <a href="donnees/reponses.csv">nos réponses</a>.</figcaption>
+  </figure>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Point</th><th>Croisement des courbes</th><th class="n">Prix</th></tr></thead>
+    <tbody>
+      <tr><td>Point marginal de bon marché (PMC)</td><td>« trop bon marché » et « cher »</td><td class="n">5,00 €</td></tr>
+      <tr><td>Prix optimal</td><td>« trop bon marché » et « trop cher »</td><td class="n">5,99 €</td></tr>
+      <tr class="hl"><td>Prix d'indifférence</td><td>« bon marché » et « cher »</td><td class="n">6,98 €</td></tr>
+      <tr><td>Point marginal de cherté (PME)</td><td>« bon marché » et « trop cher »</td><td class="n">7,99 €</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Méthode : <a href="https://prix.iae-mod.fr/seances/seance-cm-1.html" target="_blank" rel="noopener">CM 1, « Le prix que le client accepte »</a> (zone acceptable entre PMC et PME, prix optimal au croisement « trop bon marché » / « trop cher ») ; définition des quatre points : <a href="https://en.wikipedia.org/wiki/Van_Westendorp%27s_Price_Sensitivity_Meter" target="_blank" rel="noopener">Van Westendorp's Price Sensitivity Meter</a>.</p>
+
+  <h3>Lecture</h3>
+  <p><strong>Le prix actuel de 5,99 € est exactement le prix optimal</strong> : c'est le prix où le moins de gens trouvent l'offre trop chère ou trop bon marché. <strong>Le prix d'indifférence, 6,98 €</strong>, est le prix où autant de répondants trouvent l'offre « bon marché » que « chère » : c'est le prix que les étudiants considèrent comme normal pour cette offre. <strong>Spotify (7,07 €) est dans la zone acceptable</strong>, juste au-dessus de ce prix normal.</p>
+
+  <h3>Part des répondants qui rejettent chaque prix</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Prix testé</th><th class="n">la trouvent trop chère</th><th class="n">la trouvent chère</th><th class="n">la trouvent encore bon marché</th></tr></thead>
+    <tbody>
+      <tr><td>5,99 € (prix actuel)</td><td class="n">1,6 %</td><td class="n">9,7 %</td><td class="n">33,9 %</td></tr>
+      <tr><td>6,49 €</td><td class="n">4,8 %</td><td class="n">16,1 %</td><td class="n">21,0 %</td></tr>
+      <tr class="hl"><td>6,99 € (notre proposition)</td><td class="n">4,8 %</td><td class="n">22,6 %</td><td class="n">21,0 %</td></tr>
+      <tr><td>7,07 € (Spotify)</td><td class="n">9,7 %</td><td class="n">46,8 %</td><td class="n">16,1 %</td></tr>
+    </tbody>
+  </table></div>
+  <div class="calc">Exemple de calcul, 6,99 € : 3 répondants sur 62 ont donné un prix « trop cher » inférieur ou égal à 6,99 €, soit <code>3 ÷ 62 = 4,8 %</code> ; 14 sur 62 ont donné un prix « cher » inférieur ou égal à 6,99 €, soit <code>14 ÷ 62 = 22,6 %</code>.</div>
+  <p>Entre 6,99 € et 7,07 €, la part qui trouve l'offre « chère » double (de 22,6 % à 46,8 %) : beaucoup de répondants ont un seuil psychologique à 7 €. <strong>6,99 € est le dernier prix sous ce seuil.</strong></p>
+
+  <h3>Les étudiants déjà abonnés à une offre étudiante sont plus sensibles</h3>
+  <p>Sur les 26 répondants cohérents qui paient déjà une offre étudiante, la zone acceptable est plus étroite : de 5,00 € à environ 6,00 €. À 6,99 €, 7,7 % d'entre eux trouvent l'offre trop chère et 30,8 % la trouvent chère (2 et 8 répondants sur 26, <a href="donnees/reponses.csv">colonne <code>formule</code> = etudiante</a>). Avec si peu de répondants, ces chiffres sont fragiles, mais ils disent où se trouve le risque : chez les abonnés actuels. Notre <a href="proposition.html">proposition</a> en tient compte.</p>
+
+  <h2>Les limites de cette mesure</h2>
+  <ul>
+    <li><strong>Un échantillon de convenance</strong> : nos réseaux, surtout des étudiants d'Auvergne ; il décrit ceux qui ont répondu, pas tous les étudiants de France.</li>
+    <li><strong>Peu d'utilisateurs de Deezer</strong> (12 sur 70) : nous mesurons surtout le prix acceptable pour un étudiant qui ne paie pas encore Deezer, donc un prix d'acquisition.</li>
+    <li><strong>Dire n'est pas payer</strong> : les réponses déclarées sont souvent plus généreuses que les achats réels.</li>
+    <li><strong>Pas de version A/B</strong> : notre première version affichait le prix de Spotify dans une version sur deux. Le professeur nous a fait retirer cet affichage, qui ancrait les réponses sur un prix. Le questionnaire final est donc le même pour tous.</li>
+    <li><strong>Gabor-Granger et échelles de Likert non exploitables</strong> : le questionnaire posait aussi des prix un par un (Gabor-Granger) et six questions sur la valeur perçue. Une erreur de notre script d'enregistrement Google Sheets n'a pas sauvegardé ces colonnes. Notre décision repose donc sur Van Westendorp seul.</li>
+  </ul>
+
+  <div class="next"><a href="marche.html">← 2. Le marché</a><a href="proposition.html">4. La décision →</a></div>
+</main>
+<footer>Dossier de groupe · M1 Marketing Vente, IAE Clermont Auvergne · novembre 2026</footer>
+</body>
+</html>

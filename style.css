@@ -1,0 +1,56 @@
+/* Dossier « Prix et budgets marketing » – Deezer Étudiant */
+:root{
+  color-scheme: light;
+  --purple:#A238FF; --purple-dark:#7B1FD6; --purple-soft:#F4EAFF; --purple-line:#DDBDFF;
+  --ink:#0F0D13; --muted:#5E5868; --line:#E9E3F0; --bg:#F8F6FB; --card:#fff;
+  --ok:#15803D; --ok-bg:#E9F7EE; --warn:#9A3412; --warn-bg:#FFF1E6;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--purple-dark);text-decoration:underline;text-decoration-color:var(--purple-line);text-underline-offset:2px}
+a:hover{text-decoration-color:var(--purple-dark)}
+.top{background:var(--ink);color:#fff}
+.top .in{max-width:980px;margin:0 auto;padding:14px 16px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;justify-content:space-between}
+.brand{font-weight:900;letter-spacing:-.02em;color:#fff;text-decoration:none;font-size:17px}
+.brand span{color:#CDA2FF}
+nav{display:flex;flex-wrap:wrap;gap:4px}
+nav a{color:#E9E3F0;text-decoration:none;font-size:14px;font-weight:600;padding:6px 10px;border-radius:999px}
+nav a:hover{background:rgba(255,255,255,.1)}
+nav a[aria-current]{background:var(--purple);color:#fff}
+main{max-width:980px;margin:0 auto;padding:28px 16px 64px}
+.kicker{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--purple-dark);margin:0 0 6px}
+h1{font-size:34px;line-height:1.12;font-weight:900;letter-spacing:-.025em;margin:0 0 14px}
+h2{font-size:23px;line-height:1.2;font-weight:800;letter-spacing:-.02em;margin:40px 0 12px}
+h3{font-size:18px;font-weight:800;margin:26px 0 8px}
+p{margin:0 0 14px}
+.lead{font-size:18.5px;color:#2B2633}
+.card{background:var(--card);border-radius:20px;padding:22px 22px;box-shadow:0 1px 2px rgba(15,13,19,.04),0 8px 28px rgba(15,13,19,.05);margin:18px 0}
+.answer{background:var(--ink);color:#fff;border-radius:22px;padding:24px 22px;margin:22px 0}
+.answer a{color:#E2C6FF;text-decoration-color:rgba(226,198,255,.5)}
+.answer strong{color:#fff}
+.big{font-size:44px;font-weight:900;letter-spacing:-.03em;line-height:1;color:#CDA2FF}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:18px 0}
+.kpi{background:var(--card);border-radius:16px;padding:16px;box-shadow:0 1px 2px rgba(15,13,19,.04)}
+.kpi b{display:block;font-size:26px;font-weight:900;letter-spacing:-.02em;line-height:1.1}
+.kpi span{font-size:13px;color:var(--muted)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0}
+table{border-collapse:collapse;width:100%;background:var(--card);border-radius:14px;overflow:hidden;font-size:15px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#F2EDF8;font-weight:700;font-size:14px}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr.hl td{background:var(--purple-soft);font-weight:700}
+.note{font-size:14px;color:var(--muted)}
+.calc{background:#F2EDF8;border-radius:14px;padding:14px 16px;font-size:15px;margin:12px 0}
+.calc code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px}
+.warn{background:var(--warn-bg);color:#5A1F06;border-radius:14px;padding:14px 16px;margin:14px 0}
+.ok{background:var(--ok-bg);color:#0B4A23;border-radius:14px;padding:14px 16px;margin:14px 0}
+figure{margin:18px 0;background:var(--card);border-radius:18px;padding:14px;box-shadow:0 1px 2px rgba(15,13,19,.04)}
+figure img,figure svg{width:100%;height:auto;display:block}
+figcaption{font-size:13.5px;color:var(--muted);margin-top:8px}
+.steps{counter-reset:s;list-style:none;padding:0;margin:14px 0}
+.steps li{counter-increment:s;position:relative;padding:0 0 12px 42px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--purple);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+.next{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-weight:700}
+footer{max-width:980px;margin:0 auto;padding:0 16px 40px;font-size:13px;color:var(--muted)}
+@media (max-width:600px){h1{font-size:28px}.big{font-size:36px}body{font-size:16px}}
