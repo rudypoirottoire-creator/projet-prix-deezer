@@ -54,3 +54,62 @@ figcaption{font-size:13.5px;color:var(--muted);margin-top:8px}
 .next{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-weight:700}
 footer{max-width:980px;margin:0 auto;padding:0 16px 40px;font-size:13px;color:var(--muted)}
 @media (max-width:600px){h1{font-size:28px}.big{font-size:36px}body{font-size:16px}}
+
+/* ---------- Calculs visuels ---------- */
+.viz{background:var(--card);border-radius:18px;padding:18px 18px 16px;margin:16px 0;box-shadow:0 1px 2px rgba(15,13,19,.04),0 6px 20px rgba(15,13,19,.04)}
+.viz h4{margin:0 0 4px;font-size:15px;font-weight:800}
+.viz .sub{font-size:13.5px;color:var(--muted);margin:0 0 12px}
+.viz .src{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+.answer .viz{background:rgba(255,255,255,.06);box-shadow:none;color:#fff}
+.answer .viz .sub,.answer .viz .src{color:#CFC6DA}
+/* formule en cases */
+.formula{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px}
+.term{background:#F4F0F9;border-radius:12px;padding:8px 12px;min-width:84px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+.term b{font-size:21px;font-weight:900;letter-spacing:-.02em;line-height:1.15;white-space:nowrap}
+.term span{font-size:11.5px;color:var(--muted);line-height:1.25;margin-top:2px}
+.term.res{background:var(--purple);color:#fff}
+.term.res span{color:#F1E4FF}
+.op{display:flex;align-items:center;font-size:22px;font-weight:800;color:var(--purple-dark);padding:0 2px}
+.answer .term{background:rgba(255,255,255,.1)}
+.answer .term span{color:#CFC6DA}
+.answer .term.res{background:var(--purple)}
+.answer .op{color:#CDA2FF}
+/* points : 1 point = 1 répondant */
+.dots{display:grid;grid-template-columns:repeat(31,1fr);gap:4px;max-width:620px}
+.dots i{display:block;aspect-ratio:1;border-radius:50%;background:#E3DCEC}
+.dots i.on{background:var(--purple)}
+.dots i.on2{background:#F29A3D}
+.answer .dots i{background:rgba(255,255,255,.18)}
+.answer .dots i.on{background:#CDA2FF}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;margin-top:10px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;background:#E3DCEC}
+.legend .l-on::before{background:var(--purple)}
+.legend .l-on2::before{background:#F29A3D}
+.answer .legend .l-on::before{background:#CDA2FF}
+.answer .legend .l-off::before{background:rgba(255,255,255,.25)}
+/* jauge : mesuré vs seuil */
+.gauge{position:relative;height:34px;border-radius:10px;background:linear-gradient(90deg,var(--ok-bg) 0,var(--ok-bg) var(--seuil),var(--warn-bg) var(--seuil),var(--warn-bg) 100%);margin:30px 0 48px}
+.gauge .mk{position:absolute;top:-6px;bottom:-6px;width:3px;border-radius:2px;background:var(--ink)}
+.gauge .mk em{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;font-style:normal;font-size:12px;font-weight:700}
+.gauge .mk.g-top em{bottom:calc(100% + 2px)}
+.gauge .mk.g-bot em{top:calc(100% + 22px)}
+.gauge .mk.g-ok{background:var(--ok)} .gauge .mk.g-ok em{color:var(--ok)}
+.gauge .mk.g-bad{background:var(--warn)} .gauge .mk.g-bad em{color:var(--warn)}
+.gauge .scale{position:absolute;left:0;right:0;bottom:-20px;display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.answer .gauge{background:linear-gradient(90deg,rgba(34,197,94,.25) 0,rgba(34,197,94,.25) var(--seuil),rgba(249,115,22,.25) var(--seuil),rgba(249,115,22,.25) 100%)}
+.answer .gauge .mk{background:#fff} .answer .gauge .mk em{color:#fff}
+.answer .gauge .mk.g-ok{background:#4ADE80} .answer .gauge .mk.g-ok em{color:#86EFAC}
+.answer .gauge .mk.g-bad{background:#FB923C} .answer .gauge .mk.g-bad em{color:#FDBA74}
+.answer .gauge .scale{color:#CFC6DA}
+/* entonnoir */
+.funnel{display:grid;gap:6px}
+.funnel div{display:flex;align-items:center;gap:10px;font-size:14px}
+.funnel b{display:inline-flex;align-items:center;justify-content:flex-end;padding:0 10px;height:30px;border-radius:8px;background:var(--purple);color:#fff;font-weight:800;min-width:44px}
+.funnel .minus{color:var(--muted);font-size:13px}
+/* barres horizontales */
+.hbars{display:grid;gap:8px}
+.hbar{display:grid;grid-template-columns:minmax(120px,190px) 1fr 52px;align-items:center;gap:10px;font-size:14px}
+.hbar .track{height:14px;border-radius:7px;background:#EEE8F5;overflow:hidden}
+.hbar .track i{display:block;height:100%;background:var(--purple);border-radius:7px}
+.hbar .v{text-align:right;font-weight:700}
+@media (max-width:600px){.dots{grid-template-columns:repeat(16,1fr)}.term b{font-size:18px}.term{min-width:70px}.hbar{grid-template-columns:110px 1fr 46px}}
