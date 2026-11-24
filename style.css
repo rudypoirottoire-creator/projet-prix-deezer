@@ -221,3 +221,22 @@ footer a{color:#E2C6FF}
 .lk-keys{display:flex;gap:4px;align-items:center;font-size:11.5px;color:var(--muted);margin-top:8px;flex-wrap:wrap}
 .lk-keys i{display:inline-block;width:14px;height:10px;border-radius:3px}
 @media (max-width:640px){.lk-row{grid-template-columns:1fr 54px}.lk-row .lk-bar{grid-column:1/-1;grid-row:2}}
+
+/* Offres Deezer */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:14px}
+.plan{background:var(--card);border-radius:var(--r);padding:20px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;border:2px solid transparent;position:relative}
+.plan.hot{border-color:var(--purple)}
+.plan.hot::after{content:"Notre sujet";position:absolute;top:-12px;left:16px;background:var(--purple);color:#fff;font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px}
+.plan h3{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple-dark);margin:0 0 6px}
+.plan .pr{font-size:34px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.plan .pr small{font-size:14px;font-weight:700;color:var(--muted);letter-spacing:0}
+.plan .yr{font-size:13px;color:var(--muted);margin:6px 0 10px;min-height:18px}
+.plan ul{list-style:none;margin:0;padding:0;font-size:14px;display:grid;gap:6px}
+.plan li{display:flex;gap:8px;align-items:flex-start}
+.plan li::before{content:"✓";color:var(--green);font-weight:900}
+.plan li.no{color:var(--muted)} .plan li.no::before{content:"✕";color:#C4BBCF}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.feat div{background:var(--card);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow);font-size:14px}
+.feat b{display:block;font-size:15px;margin-bottom:2px}
+.embed{border-radius:16px;overflow:hidden;box-shadow:var(--shadow);background:#fff}
+.embed iframe{display:block;width:100%;height:380px;border:0}
