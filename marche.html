@@ -8,31 +8,313 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=5">
+<style>
+/* =========================================================
+   Page 2 – Marché : concurrents aux couleurs de chaque marque
+   ========================================================= */
+body.page-marche{overflow-x:clip}
+.top{--accent:var(--purple);transition:background .4s}
+.top nav a[aria-current]{background:var(--accent);transition:background .4s,color .4s}
+.scrollbar{height:3px;background:rgba(255,255,255,.08)}
+.scrollbar i{display:block;height:100%;width:0;background:var(--accent);transition:background .4s}
+body[data-brand=sp] .top{--accent:#1ED760} body[data-brand=sp] .top nav a[aria-current]{color:#000}
+body[data-brand=yt] .top{--accent:#FF0033}
+body[data-brand=ap] .top{--accent:#FA2D48}
+
+.defmarket .def{font-size:21px;line-height:1.4;font-weight:700;letter-spacing:-.01em;background:var(--card);border-radius:var(--r);padding:22px 24px;box-shadow:var(--shadow);border-left:6px solid var(--purple);margin:0 0 16px}
+.defmarket .def b{color:var(--purple-dark)}
+
+.circles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.ring{background:var(--card);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.ring::before{content:"";position:absolute;right:-40px;top:-40px;width:120px;height:120px;border-radius:50%;border:14px solid var(--purple-soft)}
+.ring.r2::before{border-color:var(--blue-soft)} .ring.r3::before{border-color:var(--orange-soft)}
+.ring .tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--purple);color:#fff;border-radius:999px;padding:3px 10px;margin-bottom:10px}
+.ring.r2 .tag{background:var(--blue)} .ring.r3 .tag{background:var(--orange)}
+.ring p{margin:0;font-size:15px;color:var(--ink-2);position:relative}
+.jump{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.jump a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:800;font-size:14.5px;padding:9px 16px 9px 9px;border-radius:999px;color:#fff;transition:transform .15s}
+.jump a:hover{transform:translateY(-2px)}
+.jump a b{display:inline-flex;width:24px;height:24px;border-radius:50%;align-items:center;justify-content:center;font-size:12px;background:rgba(255,255,255,.22)}
+.jump .j-sp{background:#121212;color:#1ED760} .jump .j-sp b{background:#1ED760;color:#000}
+.jump .j-yt{background:#0F0F0F} .jump .j-yt b{background:#FF0033}
+.jump .j-ap{background:linear-gradient(135deg,#FA233B,#FB5C74)}
+
+/* Bande pleine largeur par concurrent */
+.cx{margin:64px calc(50% - 50vw) 0;padding:72px 0 64px;position:relative;overflow:hidden;scroll-margin-top:64px}
+.cx + .cx{margin-top:0}
+.cx-in{max-width:1080px;margin:0 auto;padding:0 16px;position:relative;z-index:1}
+.cx-head{margin-bottom:28px}
+.cx-num{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;padding:4px 12px;margin-bottom:16px}
+.cx-id{display:flex;align-items:center;gap:16px}
+.cx-logo{width:64px;height:64px;object-fit:contain;flex:none}
+.cx h2{font-size:56px;line-height:1;letter-spacing:-.04em;margin:0}
+.cx-tag{font-size:19px;max-width:720px;margin:14px 0 0}
+.cx-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
+.cx-stats > div{border-radius:var(--cxr);padding:18px}
+.cx-stats b{display:block;font-size:34px;font-weight:900;letter-spacing:-.03em;line-height:1.05}
+.cx-stats span{display:block;font-size:14px;margin-top:6px;font-weight:600}
+.cx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-bottom:12px}
+.cx-trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.cx-card{border-radius:var(--cxr);padding:20px}
+.cx-card h3{font-size:18px;margin:0 0 12px}
+.cx-card p{margin:0;font-size:15px}
+.cx-k{display:block;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.cx-prices{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.cx-prices li{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-radius:calc(var(--cxr) * .6);font-size:15px}
+.cx-prices b{font-size:18px;font-weight:900;white-space:nowrap}
+.cx-note{font-size:13px !important;margin-top:12px !important}
+.cx-feat{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:15px}
+.cx-feat li{position:relative;padding-left:18px}
+.cx-feat li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:var(--cxa)}
+.cx-punch{display:flex;gap:20px;align-items:center;border-radius:var(--cxr);padding:20px 22px;margin-top:12px}
+.cx-punch b{font-size:46px;font-weight:900;letter-spacing:-.04em;line-height:1;flex:none}
+.cx-punch p{margin:0;font-size:16px}
+.cx-src{font-size:12.5px;line-height:1.5;margin:16px 0 0;opacity:.85}
+.cx code{background:rgba(127,127,127,.18);color:inherit;white-space:nowrap}
+@media (max-width:640px){.cx{padding:52px 0 44px}.cx h2{font-size:40px}.cx-logo{width:46px;height:46px}.cx-punch{flex-direction:column;align-items:flex-start;gap:8px}.cx-punch b{font-size:38px}}
+
+/* Spotify : noir et vert */
+.cx-sp{--cxr:8px;--cxa:#1ED760;background:#121212;color:#fff}
+.cx-sp::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,215,96,.28) 0,rgba(18,18,18,0) 360px);pointer-events:none}
+.cx-sp .cx-num{background:#1ED760;color:#000}
+.cx-sp .cx-tag,.cx-sp .cx-stats span,.cx-sp .cx-note,.cx-sp .cx-src{color:#B3B3B3}
+.cx-sp .cx-stats > div,.cx-sp .cx-card{background:#1F1F1F}
+.cx-sp .cx-stats b{color:#1ED760}
+.cx-sp .cx-prices li{background:#2A2A2A}
+.cx-sp .cx-prices li.me{background:#1ED760;color:#000}
+.cx-sp .cx-k{color:#1ED760}
+.cx-sp .cx-card b{color:#fff} .cx-sp .cx-prices li.me b{color:#000}
+.cx-sp .cx-punch{background:#1ED760;color:#000}
+.cx-sp a{color:#1ED760;text-decoration-color:rgba(30,215,96,.45)}
+.cx-sp .cx-feat b{color:#1ED760}
+
+/* YouTube Music : noir et rouge */
+.cx-yt{--cxr:12px;--cxa:#FF0033;background:#030303;color:#fff}
+.cx-yt::before{content:"";position:absolute;right:-180px;top:-200px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(255,0,51,.45) 0,rgba(255,0,51,0) 65%);pointer-events:none}
+.cx-yt .cx-num{background:#FF0033;color:#fff}
+.cx-yt .cx-tag,.cx-yt .cx-stats span,.cx-yt .cx-note,.cx-yt .cx-src{color:#AAAAAA}
+.cx-yt .cx-stats > div,.cx-yt .cx-card{background:#1D1D1D;border:1px solid #2C2C2C}
+.cx-yt .cx-stats b{color:#fff}
+.cx-yt .cx-stats > div:first-child{background:#FF0033;border-color:#FF0033} .cx-yt .cx-stats > div:first-child span{color:#FFE3E8}
+.cx-yt .cx-prices li{background:#2A2A2A}
+.cx-yt .cx-prices li.me{background:#FF0033}
+.cx-yt .cx-k{color:#FF4E6A}
+.cx-yt .cx-punch{background:#fff;color:#030303} .cx-yt .cx-punch b{color:#FF0033}
+.cx-yt a{color:#FF8A9B;text-decoration-color:rgba(255,138,155,.45)}
+
+/* Apple Music : blanc et rose-rouge */
+.cx-ap{--cxr:20px;--cxa:#FA2D48;background:#F5F5F7;color:#1D1D1F;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Helvetica Neue",sans-serif}
+.cx-ap::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,#FA233B,#FB5C74)}
+.cx-ap .cx-num{background:linear-gradient(135deg,#FA233B,#FB5C74);color:#fff}
+.cx-ap h2{background:linear-gradient(135deg,#FA233B,#FB5C74);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+.cx-ap .cx-tag,.cx-ap .cx-stats span,.cx-ap .cx-note,.cx-ap .cx-src{color:#6E6E73}
+.cx-ap .cx-stats > div,.cx-ap .cx-card{background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.04),0 12px 32px rgba(0,0,0,.06)}
+.cx-ap .cx-stats b{color:#FA2D48}
+.cx-ap .cx-prices li{background:#F5F5F7}
+.cx-ap .cx-prices li.me{background:linear-gradient(135deg,#FA233B,#FB5C74);color:#fff}
+.cx-ap .cx-k{color:#FA2D48}
+.cx-ap .cx-punch{background:linear-gradient(135deg,#FA233B,#FB5C74);color:#fff}
+.cx-ap a{color:#D3133A;text-decoration-color:rgba(211,19,58,.35)}
+
+/* Apparition au défilement */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+@media print{.js .reveal{opacity:1;transform:none}}
+
+/* Barres aux couleurs des marques */
+.brandbars .b-sp .t i{background:#1ED760} .brandbars .b-yt .t i{background:#FF0033} .brandbars .b-ap .t i{background:linear-gradient(90deg,#FA233B,#FB5C74)}
+</style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
-<body>
+<body class="page-marche">
 <header class="top"><div class="in">
   <a class="brand" href="index.html"><img src="img/deezer-coeur.png" alt=""><span>Deezer Étudiant<small>Dossier prix · M1 Marketing Vente</small></span></a>
   <nav aria-label="Pages du dossier"><a href="index.html">Accueil</a><a href="entreprise.html"><b>1</b>Entreprise</a><a href="marche.html" aria-current="page"><b>2</b>Marché</a><a href="questionnaire.html"><b>3</b>Questionnaire</a><a href="resultats.html"><b>4</b>Prix acceptable</a><a href="achat.html"><b>5</b>Prix d'achat</a><a href="decision.html"><b>6</b>Décision</a><a href="risques.html"><b>7</b>Risques</a></nav>
-</div></header>
+</div><div class="scrollbar" aria-hidden="true"><i></i></div></header>
 <div class="hero"><div class="in">
   <img class="heart" src="img/deezer-coeur.png" alt="">
   <p class="eyebrow"><span class="step">Étape 2/7</span> Le marché</p>
   <h1>Le plafond du marché : 7,07 €</h1>
-  <p class="lead">Deezer Étudiant est la deuxième offre étudiante la moins chère du marché. Spotify, le leader, fixe le prix à ne pas dépasser.</p>
-  
+  <p class="lead">Trois géants face à Deezer : Spotify, YouTube Music et Apple Music. Le leader, Spotify, fixe le prix étudiant à ne pas dépasser.</p>
 </div></div>
 <main>
-<div class="stats"><div class="stat "><div class="v ">5,99 €</div><div class="l">Deezer Étudiant aujourd'hui</div><div class="s"><a href="https://www.deezer.com/fr/offers/student" target="_blank" rel="noopener" title="Consultée le 23/11/2026">page officielle</a></div></div><div class="stat k"><div class="v ">7,07 €</div><div class="l">Spotify Étudiants : le plafond</div><div class="s"><a href="https://www.spotify.com/fr/premium/" target="_blank" rel="noopener" title="Consultée le 23/11/2026">page officielle</a></div></div><div class="stat o"><div class="v ">1,08 €</div><div class="l">d'écart avec Spotify</div><div class="s"><code>7,07 − 5,99</code></div></div><div class="stat b"><div class="v ">50 %</div><div class="l">de remise étudiante chez Deezer, contre 42 % chez Spotify</div><div class="s"><code>1 − 5,99 ÷ 11,99</code></div></div></div>
+<div class="stats"><div class="stat "><div class="v ">5,99 €</div><div class="l">Deezer Étudiant aujourd'hui</div><div class="s"><a href="https://www.deezer.com/fr/offers/student" target="_blank" rel="noopener" title="Consultée le 23/11/2026">page officielle</a></div></div><div class="stat k"><div class="v ">7,07 €</div><div class="l">Spotify Étudiants : le plafond</div><div class="s"><a href="https://www.spotify.com/fr/premium/" target="_blank" rel="noopener" title="Consultée le 24/11/2026">page officielle</a></div></div><div class="stat o"><div class="v ">1,08 €</div><div class="l">d'écart avec Spotify</div><div class="s"><code>7,07 − 5,99</code></div></div><div class="stat b"><div class="v ">50 %</div><div class="l">de remise étudiante chez Deezer, contre 42 % chez Spotify</div><div class="s"><code>1 − 5,99 ÷ 11,99</code></div></div></div>
 
 <section>
-  <h2>Les prix étudiants en France</h2>
-  <p class="intro">Relevés sur le site officiel de chaque service le 23 novembre 2026. </p>
+  <h2>Le marché en une phrase</h2>
+  <div class="defmarket">
+    <p class="def">Écouter toute la musique en illimité, sans publicité et hors connexion, pour les <b>étudiants de 18 à 25 ans</b>, <b>en France</b>, par abonnement mensuel.</p>
+    <div class="stats flat">
+      <div class="stat"><div class="v">12,6 M</div><div class="l">abonnements à un service de streaming en France en 2025 (+5 %)</div><div class="s"><a href="https://www.chartsinfrance.net/actualite/news-135780.html" target="_blank" rel="noopener">bilan SNEP 2025, via Purecharts</a></div></div>
+      <div class="stat b"><div class="v">40,1 %</div><div class="l">des abonnés ont entre 15 et 34 ans : notre cible pèse lourd</div><div class="s"><a href="https://www.chartsinfrance.net/actualite/news-135780.html" target="_blank" rel="noopener">bilan SNEP 2025, via Purecharts</a></div></div>
+      <div class="stat o"><div class="v">27,1 %</div><div class="l">de taux de pénétration de l'abonnement : il reste des clients à gagner</div><div class="s"><a href="https://snepmusique.com/category/communiques-dossiers-de-presse" target="_blank" rel="noopener">SNEP, 27/03/2026</a></div></div>
+      <div class="stat k"><div class="v">702 M€</div><div class="l">de chiffre d'affaires du streaming en France en 2025</div><div class="s"><a href="https://snepmusique.com/category/communiques-dossiers-de-presse" target="_blank" rel="noopener">SNEP, 27/03/2026</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Trois cercles de concurrents</h2>
+  <p class="intro">Classés selon le cours (<a href="https://prix.iae-mod.fr/seances/seance-td-1.html">TD 1</a>) : ceux qui vendent la même chose, ceux qui répondent au même besoin autrement, et ceux qu'on oublie.</p>
+  <div class="circles">
+    <div class="ring r1"><span class="tag">Directs</span><h3>Le même abonnement</h3><p><b>Spotify, YouTube Music, Apple Music</b>, présentés ci-dessous, puis Amazon Music, Qobuz et Tidal.</p></div>
+    <div class="ring r2"><span class="tag">Indirects</span><h3>Le même besoin, gratuit</h3><p>YouTube classique, les versions gratuites avec publicité (Spotify, Deezer), TikTok, la radio.</p></div>
+    <div class="ring r3"><span class="tag">Ceux qu'on oublie</span><h3>Payer moins, ou pas du tout</h3><p>L'abonnement Famille partagé : Spotify Famille revient à <code>21,24 ÷ 6 = 3,54 €</code> par personne, moins que tous les prix étudiants (réservé à un même foyer, <a href="https://www.spotify.com/fr/premium/" target="_blank" rel="noopener" title="Consultée le 24/11/2026">conditions</a>). Aussi : les offres incluses dans un forfait ou un pack.</p></div>
+  </div>
+  <div class="jump" aria-label="Aller à un concurrent">
+    <a class="j-sp" href="#spotify"><b>1</b>Spotify</a><a class="j-yt" href="#youtube-music"><b>2</b>YouTube Music</a><a class="j-ap" href="#apple-music"><b>3</b>Apple Music</a>
+  </div>
+  <p class="src">Part mondiale des abonnés fin 2025 (MIDiA Research) : Spotify 31,4 %, Tencent Music 13,8 %, Apple Music 12,6 % (<a href="https://barrettmedia.com/2026/06/17/youtube-music-surges-past-amazon-music/" target="_blank" rel="noopener">Barrett Media, 17/06/2026</a> ; <a href="https://www.musicbusinessworldwide.com/the-music-industry-is-closing-in-on-a-billion-global-subscribers-with-spotify-out-in-front/" target="_blank" rel="noopener">Music Business Worldwide</a>), sur 921,6 M d'abonnés (<a href="https://www.midiaresearch.com/blog/music-subscriber-market-shares-q4-2025-the-chess-board-is-set" target="_blank" rel="noopener">MIDiA</a>).</p>
+</section>
+
+<!-- ============ 1. SPOTIFY ============ -->
+<section class="cx cx-sp" id="spotify" data-theme="sp">
+<div class="cx-in">
+  <div class="cx-head reveal">
+    <span class="cx-num">Concurrent 1/3</span>
+    <div class="cx-id"><img class="cx-logo" src="img/spotify.png" alt="" onerror="this.remove()"><h2>Spotify</h2></div>
+    <p class="cx-tag">Le leader mondial. Suédois, coté à New York, présent dans 184 marchés : c'est lui qui fixe le plafond.</p>
+  </div>
+  <div class="cx-stats reveal">
+    <div><b>306 M</b><span>abonnés Premium (T3 2026, +9 %)</span></div>
+    <div><b>788 M</b><span>utilisateurs actifs par mois</span></div>
+    <div><b>4 969 M€</b><span>de chiffre d'affaires au T3 2026 (+16 %)</span></div>
+    <div><b>13,5 %</b><span>de marge opérationnelle <code>672 ÷ 4 969</code></span></div>
+  </div>
+  <div class="cx-grid reveal">
+    <div class="cx-card">
+      <h3>Tarifs en France</h3>
+      <ul class="cx-prices">
+        <li class="me"><span>Étudiants</span><b>7,07 €</b></li>
+        <li><span>Personnel</span><b>12,14 €</b></li>
+        <li><span>Duo</span><b>17,20 €</b></li>
+        <li><span>Famille (6 comptes)</span><b>21,24 €</b></li>
+      </ul>
+      <p class="cx-note">Par mois. Étudiants : 1 mois offert, puis 7,07 €. Remise de <code>1 − 7,07 ÷ 12,14 = 42 %</code>.</p>
+    </div>
+    <div class="cx-card">
+      <h3>Ce qui le définit</h3>
+      <ul class="cx-feat">
+        <li>Plus de 100 millions de titres, 8 millions de podcasts</li>
+        <li>Son Lossless (24 bits / 44,1 kHz) inclus</li>
+        <li>Livres audio : 12 h par mois, <b>mais pas dans l'offre Étudiants</b></li>
+        <li>Jam : écouter à plusieurs en temps réel</li>
+        <li>Une offre gratuite avec publicité : 499 M d'utilisateurs</li>
+      </ul>
+    </div>
+  </div>
+  <div class="cx-trio reveal">
+    <div class="cx-card"><span class="cx-k">Santé financière</span><p>Rentable : <b>518 M€</b> de résultat net et <b>735 M€</b> de trésorerie disponible générée au T3, <b>9,9 Md€</b> de trésorerie et placements.</p></div>
+    <div class="cx-card"><span class="cx-k">Investissements</span><p><b>417 M€</b> de recherche et développement au T3 (+35 %) ; <b>1,1 Md$</b> de rachats d'actions depuis janvier.</p></div>
+    <div class="cx-card"><span class="cx-k">Stratégie</span><p>Monter les prix : revenu moyen par abonné de <b>4,95 €</b> (+9,3 %). Livres audio étendus à plus de 180 marchés, IA et créateurs.</p></div>
+  </div>
+  <div class="cx-punch reveal"><b>9,3×</b><p>En un seul trimestre, Spotify réalise 9,3 fois le chiffre d'affaires annuel de Deezer : <code>4 969 ÷ 534,0</code>. Seuls <code>306 ÷ 788 = 39 %</code> de ses utilisateurs paient.</p></div>
+  <p class="cx-src">Sources : <a href="https://www.sec.gov/Archives/edgar/data/0001639920/000114036126040435/ef20084028_ex99-1.htm" target="_blank" rel="noopener">Spotify, résultats T3 2026, 22/10/2026 (SEC)</a> ; <a href="https://www.spotify.com/fr/premium/" target="_blank" rel="noopener" title="Consultée le 24/11/2026">tarifs et fonctionnalités, page officielle consultée le 24/11/2026</a> ; <a href="https://newsroom.spotify.com/company-info/" target="_blank" rel="noopener" title="Consultée le 24/11/2026">184 marchés et catalogue, Spotify Newsroom</a> ; CA Deezer 2025 : <a href="entreprise.html">page 1</a>.</p>
+</div>
+</section>
+
+<!-- ============ 2. YOUTUBE MUSIC ============ -->
+<section class="cx cx-yt" id="youtube-music" data-theme="yt">
+<div class="cx-in">
+  <div class="cx-head reveal">
+    <span class="cx-num">Concurrent 2/3</span>
+    <div class="cx-id"><img class="cx-logo" src="img/youtube-music.png" alt="" onerror="this.remove()"><h2>YouTube Music</h2></div>
+    <p class="cx-tag">Le service qui grandit le plus vite. Adossé à YouTube et à Google (Alphabet) : la musique, mais aussi les clips, les concerts et les remix.</p>
+  </div>
+  <div class="cx-stats reveal">
+    <div><b>150 M+</b><span>abonnés YouTube Music et Premium (essais inclus, oct. 2026)</span></div>
+    <div><b>+25 M</b><span>depuis mars 2025 <code>150 − 125</code></span></div>
+    <div><b>5,49 €</b><span>le prix étudiant le plus bas du marché</span></div>
+    <div><b>11,2 Md$</b><span>de publicité YouTube au T3 2026 (+9 %)</span></div>
+  </div>
+  <div class="cx-grid reveal">
+    <div class="cx-card">
+      <h3>Tarifs en France</h3>
+      <ul class="cx-prices">
+        <li class="me"><span>Étudiant</span><b>5,49 €</b></li>
+        <li><span>Particulier</span><b>10,99 €</b></li>
+        <li><span>Pour deux</span><b>14,99 €</b></li>
+        <li><span>Famille (6 comptes)</span><b>16,99 €</b></li>
+      </ul>
+      <p class="cx-note">Par mois. Particulier : 2 mois offerts ; Étudiant : 1 mois, vérification chaque année. Remise de <code>1 − 5,49 ÷ 10,99 = 50 %</code>.</p>
+    </div>
+    <div class="cx-card">
+      <h3>Ce qui le définit</h3>
+      <ul class="cx-feat">
+        <li>Plus de 100 millions de titres, vidéos et concerts</li>
+        <li>Passage de l'audio à la vidéo en un geste</li>
+        <li>Écoute sans pub, hors connexion et écran éteint</li>
+        <li>Inclus dans YouTube Premium (vidéos sans pub)</li>
+        <li>Mix et playlists par humeur, même sans abonnement</li>
+      </ul>
+    </div>
+  </div>
+  <div class="cx-trio reveal">
+    <div class="cx-card"><span class="cx-k">Santé financière</span><p>Google ne publie pas les comptes de YouTube Music. Sa maison mère Alphabet : <b>127,6 Md$</b> de chiffre d'affaires (+25 %) et <b>26,2 Md$</b> de résultat net au T3 2026.</p></div>
+    <div class="cx-card"><span class="cx-k">Investissements</span><p><b>51,4 Md$</b> d'investissements au T3 (centres de données, IA), soit <code>51,4 ÷ 127,6 = 40 %</code> du chiffre d'affaires. Prévision 2026 : 195 à 205 Md$.</p></div>
+    <div class="cx-card"><span class="cx-k">Stratégie</span><p>Vendre la musique avec la vidéo sans publicité, et convertir les spectateurs gratuits de YouTube. MIDiA le voit dépasser Apple Music en 2026.</p></div>
+  </div>
+  <div class="cx-punch reveal"><b>−0,50 €</b><p>Des trois, YouTube Music est le seul moins cher que Deezer pour un étudiant : <code>5,99 − 5,49 = 0,50 €</code>. Une hausse de Deezer creuse cet écart.</p></div>
+  <p class="cx-src">Sources : <a href="https://www.musicbusinessworldwide.com/youtube-music-and-premium-surpass-150-million-subscribers-globally/" target="_blank" rel="noopener">150 M, Music Business Worldwide</a> et <a href="https://www.androidauthority.com/youtube-premium-subscribers-3729415/" target="_blank" rel="noopener">Android Authority, 28/10/2026</a> ; <a href="https://blog.google/intl/en-in/feed/a-new-milestone-for-youtube-music-and-premium/" target="_blank" rel="noopener">125 M, Google, 06/03/2025</a> ; <a href="https://9to5google.com/2026/10/28/alphabet-q3-2026-earnings/" target="_blank" rel="noopener">Alphabet T3 2026, 9to5Google, 28/10/2026</a> ; <a href="https://ppc.land/alphabets-free-cash-flow-drops-to-negative-9-1bn-despite-26-2bn-profit/" target="_blank" rel="noopener">investissements T3, PPC Land</a> ; <a href="https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/07/alphabet-postq-ai-growth-accelerates-as-spending-weighs-on-cash-flow" target="_blank" rel="noopener">prévision 2026, S&amp;P Global, 27/07/2026</a> ; <a href="https://www.musicbusinessworldwide.com/the-music-industry-is-closing-in-on-a-billion-global-subscribers-with-spotify-out-in-front/" target="_blank" rel="noopener">projection MIDiA</a> ; <a href="https://www.youtube.com/musicpremium" target="_blank" rel="noopener" title="Consultée le 24/11/2026">tarifs, page officielle consultée le 24/11/2026</a>.</p>
+</div>
+</section>
+
+<!-- ============ 3. APPLE MUSIC ============ -->
+<section class="cx cx-ap" id="apple-music" data-theme="ap">
+<div class="cx-in">
+  <div class="cx-head reveal">
+    <span class="cx-num">Concurrent 3/3</span>
+    <div class="cx-id"><img class="cx-logo" src="img/apple-music.png" alt="" onerror="this.remove()"><h2>Apple Music</h2></div>
+    <p class="cx-tag">Le choix des utilisateurs d'iPhone. Aucune offre gratuite : on paie, ou on n'écoute pas.</p>
+  </div>
+  <div class="cx-stats reveal">
+    <div><b>≈ 116 M</b><span>abonnés estimés fin 2025 <code>12,6 % × 921,6 M</code></span></div>
+    <div><b>12,6 %</b><span>des abonnés mondiaux, contre 18,4 % en 2020</span></div>
+    <div><b>123,3 Md$</b><span>de chiffre d'affaires des services Apple en 2026</span></div>
+    <div><b>132,2 Md$</b><span>de résultat net d'Apple sur l'exercice 2026</span></div>
+  </div>
+  <div class="cx-grid reveal">
+    <div class="cx-card">
+      <h3>Tarifs en France</h3>
+      <ul class="cx-prices">
+        <li class="me"><span>Étudiant</span><b>6,99 €</b></li>
+        <li><span>Individuel</span><b>11,99 €</b></li>
+        <li><span>Familial (6 comptes)</span><b>19,99 €</b></li>
+        <li><span>Apple One (pack de services)</span><b>dès 19,95 €</b></li>
+      </ul>
+      <p class="cx-note">Par mois. 1 mois offert, 3 mois avec un nouvel appareil Apple. Remise de <code>1 − 6,99 ÷ 11,99 = 42 %</code>.</p>
+    </div>
+    <div class="cx-card">
+      <h3>Ce qui le définit</h3>
+      <ul class="cx-feat">
+        <li>Plus de 100 millions de morceaux, sans publicité</li>
+        <li>Lossless jusqu'à 24 bits / 192 kHz et audio spatial Dolby Atmos</li>
+        <li>Paroles en temps réel, karaoké (Apple Music Sing)</li>
+        <li>Apple Music Classical inclus, même en Étudiant</li>
+        <li>Pas d'offre gratuite, hors quelques radios</li>
+      </ul>
+    </div>
+  </div>
+  <div class="cx-trio reveal">
+    <div class="cx-card"><span class="cx-k">Santé financière</span><p>Apple ne publie ni le nombre d'abonnés ni les comptes d'Apple Music. Le groupe : <b>478,8 Md$</b> de chiffre d'affaires sur l'exercice 2026, record.</p></div>
+    <div class="cx-card"><span class="cx-k">Investissements</span><p><b>11,7 Md$</b> de recherche et développement au seul dernier trimestre de l'exercice.</p></div>
+    <div class="cx-card"><span class="cx-k">Stratégie</span><p>Vendre l'écosystème : la musique fait partie des services, qui pèsent <code>123,3 ÷ 478,8 = 26 %</code> du chiffre d'affaires, avec le pack Apple One et les mois offerts à l'achat d'un appareil.</p></div>
+  </div>
+  <div class="cx-punch reveal"><b>6,99 €</b><p>Le prix que nous avons testé pour Deezer est exactement celui d'Apple Music Étudiant. À ce prix, Deezer garde un avantage : son offre gratuite.</p></div>
+  <p class="cx-src">Sources : <a href="https://www.sec.gov/Archives/edgar/data/0000320193/000032019326000024/a8-kex991q4202609262026.htm" target="_blank" rel="noopener">Apple, résultats de l'exercice 2026 clos le 26/09/2026 (SEC)</a> ; parts de marché MIDiA : <a href="https://barrettmedia.com/2026/06/17/youtube-music-surges-past-amazon-music/" target="_blank" rel="noopener">Barrett Media, 17/06/2026</a> et <a href="https://www.midiaresearch.com/blog/music-subscriber-market-shares-q4-2025-the-chess-board-is-set" target="_blank" rel="noopener">MIDiA</a> (≈ 116 M est notre estimation, Apple ne publiant pas ce chiffre) ; <a href="https://www.apple.com/fr/apple-music/" target="_blank" rel="noopener" title="Consultée le 24/11/2026">tarifs et fonctionnalités, page officielle consultée le 24/11/2026</a>.</p>
+</div>
+</section>
+
+<section>
+  <h2>Les prix étudiants côte à côte</h2>
+  <p class="intro">Relevés sur le site officiel de chaque service les 23 et 24 novembre 2026.</p>
   <div class="card">
-    <div class="bars" style="position:relative">
-      <div class="bar "><span><a href="https://www.youtube.com/musicpremium" target="_blank" rel="noopener" title="Consultée le 23/11/2026">YouTube Music</a></span><div class="t"><i style="width:73.2%"></i></div><span class="v">5,49 €</span></div>
+    <div class="bars brandbars" style="position:relative">
+      <div class="bar b-yt"><span><a href="https://www.youtube.com/musicpremium" target="_blank" rel="noopener" title="Consultée le 24/11/2026">YouTube Music</a></span><div class="t"><i style="width:73.2%"></i></div><span class="v">5,49 €</span></div>
       <div class="bar me"><span><a href="https://www.deezer.com/fr/offers/student" target="_blank" rel="noopener" title="Consultée le 23/11/2026">Deezer</a></span><div class="t"><i style="width:79.9%"></i></div><span class="v">5,99 €</span></div>
-      <div class="bar "><span><a href="https://www.apple.com/fr/apple-music/" target="_blank" rel="noopener" title="Consultée le 23/11/2026">Apple Music</a></span><div class="t"><i style="width:93.2%"></i></div><span class="v">6,99 €</span></div>
-      <div class="bar k"><span><a href="https://www.spotify.com/fr/premium/" target="_blank" rel="noopener" title="Consultée le 23/11/2026">Spotify</a></span><div class="t"><i style="width:94.3%"></i></div><span class="v">7,07 €</span></div>
+      <div class="bar b-ap"><span><a href="https://www.apple.com/fr/apple-music/" target="_blank" rel="noopener" title="Consultée le 24/11/2026">Apple Music</a></span><div class="t"><i style="width:93.2%"></i></div><span class="v">6,99 €</span></div>
+      <div class="bar b-sp"><span><a href="https://www.spotify.com/fr/premium/" target="_blank" rel="noopener" title="Consultée le 24/11/2026">Spotify</a></span><div class="t"><i style="width:94.3%"></i></div><span class="v">7,07 €</span></div>
     </div>
     <p class="src">À 6,99 €, le prix que nous avons testé, Deezer serait au prix d'Apple Music, 0,08 € sous Spotify.</p>
   </div>
@@ -41,7 +323,7 @@
   <h2>Ce que nous en tirons</h2>
   <div class="takeaways">
     <div class="tk "><div class="ic">↑</div><div><h3>Plafond : 7,07 €</h3><p>Le prix du leader. Au-dessus, un étudiant n'a plus de raison de prix de choisir Deezer (logique concurrentielle, <a href="https://prix.iae-mod.fr/seances/seance-cm-2.html">CM 2</a>).</p></div></div>
-    <div class="tk o"><div class="ic">%</div><div><h3>Deezer est le plus généreux</h3><p>Remise étudiante de 50 % contre 42 % chez Spotify et Apple. Avec la remise de Spotify, Deezer Étudiant coûterait 6,95 € : d'où l'idée de tester 6,99 €.</p></div></div>
+    <div class="tk o"><div class="ic">%</div><div><h3>Deezer est le plus généreux</h3><p>Remise étudiante de 50 %, comme YouTube Music, contre 42 % chez Spotify et Apple. Avec la remise de Spotify, Deezer Étudiant coûterait 6,95 € : d'où l'idée de tester 6,99 €.</p></div></div>
     <div class="tk g"><div class="ic">↺</div><div><h3>Un précédent réussi</h3><p>En 2023, Deezer a augmenté ses offres de 9 à 11 % avec un départ d'abonnés « minimal » (<a href="https://www.billboard.com/business/streaming/deezer-price-increases-b2b-partnerships-earnings-1235617709" target="_blank" rel="noopener">Billboard, 28/02/2024</a>).</p></div></div>
   </div>
 </section>
@@ -54,22 +336,41 @@
   </div>
 </section>
 <section>
-  <div class="verdict"><img src="img/deezer-coeur.png" alt=""><p><b>Conclusion :</b> il existe 1,08 € entre Deezer et le plafond de Spotify. Jusqu'où les étudiants acceptent-ils de monter ? C'est l'objet de <a href="questionnaire.html">notre questionnaire</a>.</p></div>
+  <div class="verdict"><img src="img/deezer-coeur.png" alt=""><p><b>Conclusion :</b> face à trois concurrents bien plus riches, Deezer ne peut pas gagner sur les moyens. Il reste 1,08 € entre son prix et le plafond de Spotify. Jusqu'où les étudiants acceptent-ils de monter ? C'est l'objet de <a href="questionnaire.html">notre questionnaire</a>.</p></div>
   <details class="more"><summary>Voir les calculs et le tableau complet</summary><div class="body">
-  <div class="table-wrap"><table><thead><tr><th>Service (page officielle)</th><th class="n">Étudiant</th><th class="n">Individuel</th><th class="n">Remise</th></tr></thead><tbody>
-  <tr><td><a href="https://www.youtube.com/musicpremium" target="_blank" rel="noopener" title="Consultée le 23/11/2026">YouTube Music Premium</a></td><td class="n">5,49 €</td><td class="n">10,99 €</td><td class="n">50 %</td></tr>
-  <tr class="hl"><td><a href="https://www.deezer.com/fr/offers/student" target="_blank" rel="noopener" title="Consultée le 23/11/2026">Deezer Étudiant</a> / <a href="https://www.deezer.com/fr/offers" target="_blank" rel="noopener" title="Consultée le 23/11/2026">Premium</a></td><td class="n">5,99 €</td><td class="n">11,99 €</td><td class="n">50 %</td></tr>
-  <tr><td><a href="https://www.apple.com/fr/apple-music/" target="_blank" rel="noopener" title="Consultée le 23/11/2026">Apple Music</a></td><td class="n">6,99 €</td><td class="n">11,99 €</td><td class="n">42 %</td></tr>
-  <tr><td><a href="https://www.spotify.com/fr/premium/" target="_blank" rel="noopener" title="Consultée le 23/11/2026">Spotify Premium</a></td><td class="n">7,07 €</td><td class="n">12,14 €</td><td class="n">42 %</td></tr>
+  <div class="table-wrap"><table><thead><tr><th>Service (page officielle)</th><th class="n">Étudiant</th><th class="n">Individuel</th><th class="n">Famille</th><th class="n">Remise</th></tr></thead><tbody>
+  <tr><td><a href="https://www.youtube.com/musicpremium" target="_blank" rel="noopener" title="Consultée le 24/11/2026">YouTube Music Premium</a></td><td class="n">5,49 €</td><td class="n">10,99 €</td><td class="n">16,99 €</td><td class="n">50 %</td></tr>
+  <tr class="hl"><td><a href="https://www.deezer.com/fr/offers/student" target="_blank" rel="noopener" title="Consultée le 23/11/2026">Deezer Étudiant</a> / <a href="https://www.deezer.com/fr/offers" target="_blank" rel="noopener" title="Consultée le 23/11/2026">Premium</a></td><td class="n">5,99 €</td><td class="n">11,99 €</td><td class="n">19,99 €</td><td class="n">50 %</td></tr>
+  <tr><td><a href="https://www.apple.com/fr/apple-music/" target="_blank" rel="noopener" title="Consultée le 24/11/2026">Apple Music</a></td><td class="n">6,99 €</td><td class="n">11,99 €</td><td class="n">19,99 €</td><td class="n">42 %</td></tr>
+  <tr><td><a href="https://www.spotify.com/fr/premium/" target="_blank" rel="noopener" title="Consultée le 24/11/2026">Spotify Premium</a></td><td class="n">7,07 €</td><td class="n">12,14 €</td><td class="n">21,24 €</td><td class="n">42 %</td></tr>
   </tbody></table></div>
-  <p class="src">Toutes les pages officielles consultées le 23/11/2026.</p>
+  <p class="src">Pages officielles consultées les 23 et 24/11/2026. Remise = 1 − prix étudiant ÷ prix individuel.</p>
   <p class="calc-title">Écart avec le plafond</p><div class="formula"><div class="term"><b>7,07 €</b><span>Spotify</span></div><span class="op">−</span><div class="term"><b>5,99 €</b><span>Deezer</span></div><span class="op">=</span><div class="term res"><b>1,08 €</b><span>écart</span></div></div>
   <p class="calc-title">Remise étudiante</p><div class="formula"><div class="term"><b>1</b><span>100 %</span></div><span class="op">−</span><div class="term"><b>5,99 €</b><span>Deezer Étudiant</span></div><span class="op">÷</span><div class="term"><b>11,99 €</b><span>Deezer Premium</span></div><span class="op">=</span><div class="term res"><b>50 %</b><span>Deezer</span></div></div><div style="height:10px"></div><div class="formula"><div class="term"><b>1</b><span>100 %</span></div><span class="op">−</span><div class="term"><b>7,07 €</b><span>Spotify Étudiants</span></div><span class="op">÷</span><div class="term"><b>12,14 €</b><span>Spotify Personnel</span></div><span class="op">=</span><div class="term res"><b>42 %</b><span>Spotify</span></div></div>
   <p class="calc-title">Deezer avec la remise de Spotify</p><div class="formula"><div class="term"><b>11,99 €</b><span>Deezer Premium</span></div><span class="op">×</span><div class="term"><b>0,58</b><span>1 − 42 %</span></div><span class="op">=</span><div class="term res"><b>6,95 €</b><span>prix équivalent</span></div></div>
+  <p class="calc-title">Abonnés estimés d'Apple Music</p><div class="formula"><div class="term"><b>12,6 %</b><span>part MIDiA fin 2025</span></div><span class="op">×</span><div class="term"><b>921,6 M</b><span>abonnés mondiaux</span></div><span class="op">=</span><div class="term res"><b>≈ 116 M</b><span>estimation</span></div></div>
+  <p class="calc-title">Spotify face à Deezer</p><div class="formula"><div class="term"><b>4 969 M€</b><span>CA Spotify T3 2026</span></div><span class="op">÷</span><div class="term"><b>534,0 M€</b><span>CA Deezer 2025</span></div><span class="op">=</span><div class="term res"><b>9,3×</b><span>en un trimestre</span></div></div>
   <p class="calc-title">La hausse de 2023</p><p>Premium de 10,99 € à 11,99 € (+9 %) et Famille de 17,99 € à 19,99 € (+11 %), annoncée en septembre 2023 et appliquée aux abonnés existants à partir du 24 octobre (<a href="https://www.chartsinfrance.net/actualite/news-126239.html">Charts in France, 27/09/2023</a>). Notre hausse est plus forte : <code>1 ÷ 5,99 = +16,7 %</code>.</p></div></details>
 </section>
 <div class="pager"><a href="entreprise.html"><small>← Précédent</small><b>1. Entreprise</b></a><a class="next" href="questionnaire.html"><small>Suivant →</small><b>3. Questionnaire</b></a></div>
 </main>
-<footer><div class="in"><span>Rudy Poirot · Léo Dupré · Malik Adidou · Lenny Peissel · Yohan Ribeiro — M1 Marketing Vente, IAE Clermont Auvergne · novembre 2026</span><span>Étude universitaire indépendante. Deezer et Spotify sont des marques de leurs propriétaires.</span></div></footer>
+<footer><div class="in"><span>Rudy Poirot · Léo Dupré · Malik Adidou · Lenny Peissel · Yohan Ribeiro — M1 Marketing Vente, IAE Clermont Auvergne · novembre 2026</span><span>Étude universitaire indépendante. Deezer, Spotify, YouTube Music et Apple Music sont des marques de leurs propriétaires.</span></div></footer>
+<script>
+(function(){
+  var body=document.body, bar=document.querySelector('.scrollbar i');
+  var secs=[].slice.call(document.querySelectorAll('[data-theme]'));
+  function onScroll(){
+    var mid=window.innerHeight*0.45, cur='';
+    secs.forEach(function(s){var r=s.getBoundingClientRect(); if(r.top<=mid && r.bottom>=mid) cur=s.dataset.theme;});
+    if(cur) body.setAttribute('data-brand',cur); else body.removeAttribute('data-brand');
+    var h=document.documentElement; if(bar) bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('resize',onScroll); onScroll();
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -10% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  } else { document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');}); }
+})();
+</script>
 </body>
 </html>
