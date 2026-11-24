@@ -17,40 +17,34 @@
 <div class="hero"><div class="in">
   <img class="heart" src="img/deezer-coeur.png" alt="">
   <p class="eyebrow"><span class="step">Étape 3/7</span> Le questionnaire</p>
-  <h1>Nous avons interrogé 148 étudiants</h1>
-  <p class="lead">Un questionnaire en ligne, anonyme, de trois minutes, avec trois mesures complémentaires. Toutes les réponses sont <a href="donnees/reponses.csv">téléchargeables</a>.</p>
+  <h1>Nous avons interrogé 103 étudiants</h1>
+  <p class="lead">Un questionnaire en ligne, anonyme, de deux minutes, avec trois mesures complémentaires. Toutes les réponses sont <a href="donnees/reponses.csv">téléchargeables</a>.</p>
   
 </div></div>
 <main>
-<div class="stats"><div class="stat "><div class="v ">179</div><div class="l">personnes ont répondu</div><div class="s">en deux vagues</div></div><div class="stat b"><div class="v ">148</div><div class="l">réponses complètes d'étudiants</div><div class="s">31 hors cible</div></div><div class="stat g"><div class="v ">135</div><div class="l">analysées avec Van Westendorp</div><div class="s">13 retirées</div></div><div class="stat k"><div class="v ">74</div><div class="l">avec Gabor-Granger et Likert</div><div class="s">vague 2 : 23-24/11/2026</div></div></div>
+<div class="stats"><div class="stat "><div class="v ">103</div><div class="l">étudiants ont répondu</div><div class="s">23 et 24/11/2026</div></div><div class="stat b"><div class="v ">90</div><div class="l">réponses complètes</div><div class="s">13 hors cible</div></div><div class="stat g"><div class="v ">89</div><div class="l">analysées avec Gabor-Granger et Likert</div><div class="s">1 trop rapide</div></div><div class="stat k"><div class="v ">83</div><div class="l">analysées avec Van Westendorp</div><div class="s">6 incohérentes</div></div></div>
 
 <section>
-  <h2>Deux vagues de collecte</h2>
-  <p class="intro">Diffusion dans nos promotions, nos proches et sur les réseaux sociaux. Une erreur de notre script d'enregistrement a imposé une seconde vague.</p>
-  <div class="grid2">
-    <div class="card"><h3>Vague 1 : du 20 au 25 octobre 2026</h3><p style="font-size:15px;margin:0">93 personnes, 70 réponses complètes. Le questionnaire posait déjà toutes les questions, mais notre script Google Sheets n'a enregistré que Van Westendorp et le profil : les réponses Gabor-Granger et Likert ont été perdues.</p></div>
-    <div class="card"><h3>Vague 2 : les 23 et 24 novembre 2026</h3><p style="font-size:15px;margin:0">Script corrigé et testé, même questionnaire, même lien : 86 personnes, 78 réponses complètes, cette fois avec toutes les questions enregistrées (dont 4 reçues juste avant la correction).</p></div>
-  </div>
-</section>
-<section>
   <h2>Qui a répondu</h2>
+  <p class="intro">Questionnaire diffusé les 23 et 24 novembre 2026 dans nos promotions, nos proches et sur les réseaux sociaux. Seuls les étudiants qui écoutent de la musique en streaming ont répondu jusqu'au bout.</p>
   <div class="grid2">
-    <div class="card"><h3>De 179 personnes aux réponses analysées</h3>
+    <div class="card"><h3>De 103 réponses aux réponses analysées</h3>
       <div class="funnel" style="margin-top:12px">
-        <div class="row"><b style="width:100%">179</b></div>
-        <div class="cut">− 31 hors cible : pas étudiant ou pas de streaming</div>
-        <div class="row"><b style="width:83%">148</b><span>réponses complètes</span></div>
-        <div class="cut">− 11 incohérentes (les 4 prix ne montent pas) · − 2 trop rapides (moins d'un tiers du temps médian)</div>
-        <div class="row"><b style="width:75%">135</b><span>analysées avec Van Westendorp</span></div>
-        <div class="row"><b style="width:41%">74</b><span>analysées avec Gabor-Granger et Likert (vague 2)</span></div>
+        <div class="row"><b style="width:100%">103</b></div>
+        <div class="cut">− 13 hors cible : pas étudiant ou pas de streaming</div>
+        <div class="row"><b style="width:87%">90</b><span>réponses complètes</span></div>
+        <div class="cut">− 1 trop rapide : 32 s, moins d'un tiers du temps médian</div>
+        <div class="row"><b style="width:86%">89</b><span>analysées avec Gabor-Granger et Likert</span></div>
+        <div class="cut">− 6 incohérentes pour Van Westendorp (les 4 prix ne montent pas)</div>
+        <div class="row"><b style="width:81%">83</b><span>analysées avec Van Westendorp</span></div>
       </div>
-      <p class="src">Calcul : <code>179 − 31 = 148</code> ; <code>148 − 11 − 2 = 135</code>. Temps médian : 2 min 03 s, seuil : 41 s. Source : <a href="donnees/reponses.csv">nos réponses</a>, colonnes <code>statut</code>, <code>vw_coherent</code>, <code>duree_sec</code>, <code>vague</code>.</p></div>
-    <div class="card"><h3>Service le plus utilisé (148 réponses)</h3>
-      <div class="bars" style="margin-top:12px"><div class="bar "><span>Spotify</span><div class="t"><i style="width:56.8%"></i></div><span class="v">57 %</span></div><div class="bar me"><span>Deezer</span><div class="t"><i style="width:25.0%"></i></div><span class="v">25 %</span></div><div class="bar "><span>Apple Music</span><div class="t"><i style="width:11.5%"></i></div><span class="v">11 %</span></div><div class="bar "><span>YouTube Music</span><div class="t"><i style="width:5.4%"></i></div><span class="v">5 %</span></div></div>
-      <p class="src">Part = nombre ÷ 148, par exemple <code>84 ÷ 148 = 57 %</code>. Source : <a href="donnees/reponses.csv">nos réponses</a>, colonne <code>service</code>.</p>
-      <h3 style="margin-top:16px">Fréquence d'écoute (vague 2, 74 réponses)</h3>
-      <div class="bars" style="margin-top:8px"><div class="bar me"><span>Tous les jours</span><div class="t"><i style="width:78.4%"></i></div><span class="v">78 %</span></div><div class="bar "><span>Plusieurs fois / sem.</span><div class="t"><i style="width:18.9%"></i></div><span class="v">19 %</span></div><div class="bar "><span>Une fois / sem.</span><div class="t"><i style="width:2.7%"></i></div><span class="v">3 %</span></div></div>
-      <p class="src">Colonne <code>frequence</code>, par exemple <code>58 ÷ 74 = 78 %</code>.</p></div>
+      <p class="src">Calcul : <code>103 − 13 = 90</code> ; <code>90 − 1 = 89</code> ; <code>89 − 6 = 83</code>. Temps médian : 1 min 52 s, seuil : 37 s. Source : <a href="donnees/reponses.csv">nos réponses</a>, colonnes <code>statut</code>, <code>duree_sec</code> et <code>vw_coherent</code>.</p></div>
+    <div class="card"><h3>Service le plus utilisé (89 réponses)</h3>
+      <div class="bars" style="margin-top:12px"><div class="bar "><span>Spotify</span><div class="t"><i style="width:52.8%"></i></div><span class="v">53 %</span></div><div class="bar me"><span>Deezer</span><div class="t"><i style="width:29.2%"></i></div><span class="v">29 %</span></div><div class="bar "><span>Apple Music</span><div class="t"><i style="width:12.4%"></i></div><span class="v">12 %</span></div><div class="bar "><span>Autres</span><div class="t"><i style="width:5.6%"></i></div><span class="v">6 %</span></div></div>
+      <p class="src">Part = nombre ÷ 89, par exemple <code>47 ÷ 89 = 53 %</code>. Autres : YouTube Music, Amazon Music, autre service. Colonne <code>service</code>.</p>
+      <h3 style="margin-top:16px">Fréquence d'écoute</h3>
+      <div class="bars" style="margin-top:8px"><div class="bar me"><span>Tous les jours</span><div class="t"><i style="width:79.8%"></i></div><span class="v">80 %</span></div><div class="bar "><span>Plusieurs fois / sem.</span><div class="t"><i style="width:16.9%"></i></div><span class="v">17 %</span></div><div class="bar "><span>Une fois / sem.</span><div class="t"><i style="width:3.4%"></i></div><span class="v">3 %</span></div></div>
+      <p class="src">Colonne <code>frequence</code>, par exemple <code>71 ÷ 89 = 80 %</code>.</p></div>
   </div>
 </section>
 <section>
@@ -64,18 +58,20 @@
   <p class="src">Le questionnaire est toujours en ligne : <a href="https://rudypoirottoire-creator.github.io/sondage-deezer/" target="_blank" rel="noopener">sondage Deezer</a>.</p>
 </section>
 <section>
-  <div class="verdict"><img src="img/deezer-coeur.png" alt=""><p><b>Un échantillon cohérent avec la cible :</b> 98 % des répondants ont entre 18 et 25 ans, l'âge exigé pour l'offre Deezer Étudiant, et 78 % écoutent de la musique tous les jours. Il reste dominé par les utilisateurs de Spotify (57 %).</p></div>
-  <details class="more"><summary>Voir le profil détaillé des répondants</summary><div class="body">
-  <div class="table-wrap"><table><thead><tr><th>Profil des 148 réponses complètes</th><th class="n">Nombre</th><th class="n">Part</th></tr></thead><tbody>
-  <tr><td>Offre étudiante payante</td><td class="n">68</td><td class="n">46 %</td></tr>
-  <tr><td>Offre Famille (compte d'un proche ou partagé)</td><td class="n">39</td><td class="n">26 %</td></tr>
-  <tr><td>Offre gratuite</td><td class="n">20</td><td class="n">14 %</td></tr>
-  <tr><td>Offre individuelle / Duo</td><td class="n">16 / 5</td><td class="n">11 % / 3 %</td></tr>
-  <tr><td>Paient eux-mêmes leur abonnement</td><td class="n">75</td><td class="n">51 %</td></tr>
-  <tr><td>Âge médian (de 18 à 35 ans)</td><td class="n" colspan="2">21 ans</td></tr>
-  <tr><td>Entre 18 et 25 ans</td><td class="n">145</td><td class="n">98 %</td></tr>
+  <div class="verdict"><img src="img/deezer-coeur.png" alt=""><p><b>Un échantillon cohérent avec la cible :</b> 99 % des répondants ont entre 18 et 25 ans, l'âge exigé pour l'offre Deezer Étudiant, et 80 % écoutent de la musique tous les jours. Il reste dominé par les utilisateurs de Spotify (53 %).</p></div>
+  <details class="more"><summary>Voir le profil détaillé et la note sur la première collecte</summary><div class="body">
+  <div class="table-wrap"><table><thead><tr><th>Profil des 89 réponses analysées</th><th class="n">Nombre</th><th class="n">Part</th></tr></thead><tbody>
+  <tr><td>Offre étudiante payante</td><td class="n">45</td><td class="n">51 %</td></tr>
+  <tr><td>Offre Famille (compte d'un proche ou partagé)</td><td class="n">17</td><td class="n">19 %</td></tr>
+  <tr><td>Offre gratuite</td><td class="n">13</td><td class="n">15 %</td></tr>
+  <tr><td>Offre individuelle / Duo</td><td class="n">11 / 3</td><td class="n">12 % / 3 %</td></tr>
+  <tr><td>Paient eux-mêmes leur abonnement</td><td class="n">48</td><td class="n">54 %</td></tr>
+  <tr><td>Âge médian (de 18 à 28 ans)</td><td class="n" colspan="2">21 ans</td></tr>
+  <tr><td>Entre 18 et 25 ans</td><td class="n">88</td><td class="n">99 %</td></tr>
   </tbody></table></div>
-  <p class="src">Source : <a href="donnees/reponses.csv">nos réponses</a>, colonnes <code>formule</code>, <code>payeur</code> et <code>age</code>.</p></div></details>
+  <p class="src">Source : <a href="donnees/reponses.csv">nos réponses</a>, colonnes <code>formule</code>, <code>payeur</code> et <code>age</code>.</p>
+  <p class="calc-title">Pourquoi pas les réponses d'octobre ?</p>
+  <p>Une première collecte (20-25 octobre 2026) avait posé les mêmes questions, mais notre script d'enregistrement Google Sheets n'avait sauvegardé que Van Westendorp et le profil. Nous avons corrigé et testé le script, relancé le même questionnaire, et ne retenons que cette seconde collecte, complète.</p></div></details>
 </section>
 <div class="pager"><a href="marche.html"><small>← Précédent</small><b>2. Marché</b></a><a class="next" href="resultats.html"><small>Suivant →</small><b>4. Prix acceptable</b></a></div>
 </main>

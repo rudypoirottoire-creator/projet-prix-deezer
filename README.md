@@ -10,11 +10,11 @@ Site : https://rudypoirottoire-creator.github.io/projet-prix-deezer/
 | `index.html` | Question, réponse, plan |
 | `entreprise.html` | 1. Deezer par ses comptes 2025 et S1 2026 |
 | `marche.html` | 2. Prix étudiants des concurrents, canaux, plafond |
-| `questionnaire.html` | 3. Deux vagues de collecte, profil des répondants |
-| `resultats.html` | 4. Van Westendorp (135 réponses) |
-| `achat.html` | 5. Gabor-Granger et échelle de Likert (74 réponses) |
+| `questionnaire.html` | 3. Collecte des 23 et 24 novembre 2026, profil des répondants |
+| `resultats.html` | 4. Van Westendorp (83 réponses cohérentes) |
+| `achat.html` | 5. Gabor-Granger et échelle de Likert (89 réponses) |
 | `decision.html` | 6. Recommandation : garder 5,99 € |
 | `risques.html` | 7. Seuil, stress test, coût d'une erreur |
-| `donnees/reponses.csv` | Réponses anonymes des deux vagues (colonne `vague`) |
+| `donnees/reponses.csv` | Réponses anonymes (103 lignes, 23-24 novembre 2026) |
 
 Questionnaire : https://rudypoirottoire-creator.github.io/sondage-deezer/
