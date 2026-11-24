@@ -27,7 +27,7 @@ nav a b{display:inline-flex;width:18px;height:18px;border-radius:50%;background:
 nav a:hover{background:rgba(255,255,255,.08)}
 nav a[aria-current]{background:var(--purple);color:#fff}
 nav a[aria-current] b{background:rgba(255,255,255,.25)}
-@media (max-width:1180px){.brand small{display:none}}
+@media (max-width:1260px){.brand small{display:none}}
 @media (max-width:920px){.top .in{flex-wrap:wrap;gap:8px}nav{width:100%;margin-left:0}}
 
 /* ---------- Bandeau de page ---------- */
@@ -201,3 +201,23 @@ tr.hl td{background:var(--purple-soft);font-weight:700}
 footer{background:var(--ink);color:#BDB3CB;font-size:13px}
 footer .in{max-width:1080px;margin:0 auto;padding:24px 16px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 footer a{color:#E2C6FF}
+
+/* Gabor-Granger : barres verticales */
+.vbars{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;align-items:end;height:230px;margin:10px 0 0;padding-top:24px}
+.vbar{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative}
+.vbar .col{width:100%;max-width:64px;border-radius:10px 10px 4px 4px;background:#D9CCE8;position:relative}
+.vbar .col b{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:900;white-space:nowrap}
+.vbar.best .col{background:linear-gradient(180deg,#C77DFF,var(--purple))}
+.vbar.test .col{background:repeating-linear-gradient(45deg,#F6C99E,#F6C99E 6px,#FBE3CC 6px,#FBE3CC 12px)}
+.vlabels{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:8px;text-align:center;font-size:12.5px;font-weight:700}
+.vlabels span small{display:block;font-weight:600;color:var(--muted);font-size:11.5px}
+@media (max-width:560px){.vbars,.vlabels{gap:4px}.vbar .col b{font-size:11px}.vlabels{font-size:11px}}
+/* Likert : barres empilées 1 à 7 */
+.lk{display:grid;gap:12px}
+.lk-row{display:grid;grid-template-columns:minmax(160px,1.1fr) 2fr 54px;gap:12px;align-items:center;font-size:14px}
+.lk-bar{display:flex;height:22px;border-radius:7px;overflow:hidden;background:#EEE8F5}
+.lk-bar i{display:block;height:100%}
+.lk-row .m{font-weight:900;text-align:right}
+.lk-keys{display:flex;gap:4px;align-items:center;font-size:11.5px;color:var(--muted);margin-top:8px;flex-wrap:wrap}
+.lk-keys i{display:inline-block;width:14px;height:10px;border-radius:3px}
+@media (max-width:640px){.lk-row{grid-template-columns:1fr 54px}.lk-row .lk-bar{grid-column:1/-1;grid-row:2}}

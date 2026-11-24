@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5. Prix d'achat – Gabor-Granger et Likert</title>
+<link rel="icon" href="img/deezer-coeur.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="index.html"><img src="img/deezer-coeur.png" alt=""><span>Deezer Étudiant<small>Dossier prix · M1 Marketing Vente</small></span></a>
+  <nav aria-label="Pages du dossier"><a href="index.html">Accueil</a><a href="entreprise.html"><b>1</b>Entreprise</a><a href="marche.html"><b>2</b>Marché</a><a href="questionnaire.html"><b>3</b>Questionnaire</a><a href="resultats.html"><b>4</b>Prix acceptable</a><a href="achat.html" aria-current="page"><b>5</b>Prix d'achat</a><a href="decision.html"><b>6</b>Décision</a><a href="risques.html"><b>7</b>Risques</a></nav>
+</div></header>
+<div class="hero"><div class="in">
+  <img class="heart" src="img/deezer-coeur.png" alt="">
+  <p class="eyebrow"><span class="step">Étape 5/7</span> Prix d'achat</p>
+  <h1>À 6,99 €, beaucoup d'étudiants ne paieraient plus</h1>
+  <p class="lead">Gabor-Granger et l'échelle de Likert, sur les 74 réponses de la vague 2 : le prix actuel rapporte le plus, et il est perçu comme juste.</p>
+  
+</div></div>
+<main>
+<div class="stats"><div class="stat g"><div class="v ">78,4 %</div><div class="l">prendraient l'offre à 5,99 €</div><div class="s"><code>58 ÷ 74</code></div></div><div class="stat o"><div class="v ">35 à 53 %</div><div class="l">la prendraient autour de 6,99 €</div><div class="s">entre 7,07 € et 6,79 €</div></div><div class="stat "><div class="v ">5,99 €</div><div class="l">le prix qui rapporte le plus</div><div class="s">prix × part qui accepte</div></div><div class="stat k"><div class="v ">5,55 / 7</div><div class="l">valeur perçue du prix actuel</div><div class="s">Likert, alpha 0,74</div></div></div>
+
+<section>
+  <h2>Combien prendraient l'offre à chaque prix ?</h2>
+  <p class="intro">Méthode Gabor-Granger : « Prendriez-vous l'offre Deezer Étudiant à ce prix ? », du moins cher au plus cher, jusqu'au premier « non ». Un étudiant qui accepte 6,79 € accepte aussi tous les prix en dessous.</p>
+  <div class="card">
+    <div class="vbars"><div class="vbar "><div class="col" style="height:93.2%"><b>93,2 %</b></div></div><div class="vbar "><div class="col" style="height:83.8%"><b>83,8 %</b></div></div><div class="vbar best"><div class="col" style="height:78.4%"><b>78,4 %</b></div></div><div class="vbar "><div class="col" style="height:67.6%"><b>67,6 %</b></div></div><div class="vbar "><div class="col" style="height:62.2%"><b>62,2 %</b></div></div><div class="vbar "><div class="col" style="height:52.7%"><b>52,7 %</b></div></div><div class="vbar "><div class="col" style="height:35.1%"><b>35,1 %</b></div></div></div><div class="vlabels"><span>4,99 €<small>69/74</small></span><span>5,49 €<small>62/74</small></span><span>5,99 €<small>58/74</small></span><span>6,29 €<small>50/74</small></span><span>6,49 €<small>46/74</small></span><span>6,79 €<small>39/74</small></span><span>7,07 €<small>26/74</small></span></div>
+    <p class="src">Part des 74 répondants de la vague 2 qui prendraient l'offre à chaque prix. Exemple : 58 acceptent 5,99 € ou plus, soit <code>58 ÷ 74 = 78,4 %</code>. Source : <a href="donnees/reponses.csv">nos réponses</a>, colonne <code>gg_prix_max_accepte</code>.</p>
+  </div>
+</section>
+<section>
+  <h2>Quel prix rapporte le plus ?</h2>
+  <p class="intro">On multiplie chaque prix par la part d'étudiants qui l'acceptent : c'est le revenu attendu par étudiant interrogé (<a href="https://prix.iae-mod.fr/seances/seance-cm-1.html">CM 1, Gabor-Granger</a>). Deezer gardant une part fixe de chaque euro (hypothèse prudente, <a href="decision.html">la décision</a>), le prix qui maximise ce produit maximise aussi sa marge.</p>
+  <div class="grid2">
+    <div class="card"><h3>Revenu attendu par étudiant interrogé (prix × part qui accepte)</h3><div class="bars" style="margin-top:10px"><div class="bar "><span>4,99 €</span><div class="t"><i style="width:93.0%"></i></div><span class="v">4,65</span></div><div class="bar "><span>5,49 €</span><div class="t"><i style="width:92.0%"></i></div><span class="v">4,60</span></div><div class="bar me"><span>5,99 €</span><div class="t"><i style="width:94.0%"></i></div><span class="v">4,70</span></div><div class="bar "><span>6,29 €</span><div class="t"><i style="width:85.0%"></i></div><span class="v">4,25</span></div><div class="bar "><span>6,49 €</span><div class="t"><i style="width:80.6%"></i></div><span class="v">4,03</span></div><div class="bar o"><span>6,79 €</span><div class="t"><i style="width:71.6%"></i></div><span class="v">3,58</span></div><div class="bar o"><span>7,07 €</span><div class="t"><i style="width:49.6%"></i></div><span class="v">2,48</span></div></div>
+      <p class="src">Exemple : <code>5,99 × 78,4 % = 4,70 €</code> ; <code>6,79 × 52,7 % = 3,58 €</code>.</p></div>
+    <div class="card"><h3>Et à 6,99 € ?</h3><p style="font-size:15px">6,99 € n'était pas dans la grille. Les étudiants qui l'acceptent sont au moins ceux qui acceptent 7,07 € (35,1 %), et au plus ceux qui acceptent 6,79 € (52,7 %).</p>
+      <div class="formula"><div class="term"><b>78,4 %</b><span>acceptent 5,99 €</span></div><span class="op">→</span><div class="term res"><b>35 à 53 %</b><span>acceptent 6,99 €</span></div></div><div style="height:10px"></div>
+      <div class="formula"><div class="term"><b>1</b><span>100 %</span></div><span class="op">−</span><div class="term"><b>52,7 %</b><span>au mieux</span></div><span class="op">÷</span><div class="term"><b>78,4 %</b><span>à 5,99 €</span></div><span class="op">=</span><div class="term res"><b>32,8 %</b><span>perdus au mieux</span></div></div><div style="height:10px"></div>
+      <div class="formula"><div class="term"><b>1</b><span>100 %</span></div><span class="op">−</span><div class="term"><b>35,1 %</b><span>au pire</span></div><span class="op">÷</span><div class="term"><b>78,4 %</b><span>à 5,99 €</span></div><span class="op">=</span><div class="term res"><b>55,2 %</b><span>perdus au pire</span></div></div></div>
+  </div>
+</section>
+<section>
+  <h2>Le prix actuel est jugé juste</h2>
+  <p class="intro">Échelle de Likert adaptée de <a href="https://doi.org/10.1016/j.heliyon.2021.e07783" target="_blank" rel="noopener">Barata et Coelho (2021), Heliyon</a>, posée après les questions de prix, quand le répondant connaît le prix actuel (5,99 €).</p>
+  <div class="grid2">
+    <div class="card"><h3>Valeur perçue du prix · moyenne 5,55 / 7</h3><div class="lk" style="margin-top:10px">
+      <div class="lk-row"><span>Prix raisonnable</span><div class="lk-bar"><i style="width:0.00%;background:#B91C1C" title="1 : 0"></i><i style="width:0.00%;background:#EF4444" title="2 : 0"></i><i style="width:2.70%;background:#F59E0B" title="3 : 2"></i><i style="width:10.81%;background:#D1D5DB" title="4 : 8"></i><i style="width:24.32%;background:#86EFAC" title="5 : 18"></i><i style="width:37.84%;background:#22C55E" title="6 : 28"></i><i style="width:24.32%;background:#15803D" title="7 : 18"></i></div><span class="m">5,70</span></div><div class="lk-row"><span>Bon rapport qualité-prix</span><div class="lk-bar"><i style="width:0.00%;background:#B91C1C" title="1 : 0"></i><i style="width:0.00%;background:#EF4444" title="2 : 0"></i><i style="width:2.70%;background:#F59E0B" title="3 : 2"></i><i style="width:13.51%;background:#D1D5DB" title="4 : 10"></i><i style="width:29.73%;background:#86EFAC" title="5 : 22"></i><i style="width:36.49%;background:#22C55E" title="6 : 27"></i><i style="width:17.57%;background:#15803D" title="7 : 13"></i></div><span class="m">5,53</span></div><div class="lk-row"><span>Bonne valeur au prix actuel</span><div class="lk-bar"><i style="width:1.35%;background:#B91C1C" title="1 : 1"></i><i style="width:0.00%;background:#EF4444" title="2 : 0"></i><i style="width:2.70%;background:#F59E0B" title="3 : 2"></i><i style="width:12.16%;background:#D1D5DB" title="4 : 9"></i><i style="width:31.08%;background:#86EFAC" title="5 : 23"></i><i style="width:40.54%;background:#22C55E" title="6 : 30"></i><i style="width:12.16%;background:#15803D" title="7 : 9"></i></div><span class="m">5,42</span></div></div><div class="lk-keys">1 = pas du tout d'accord <i style="background:#B91C1C"></i><i style="background:#EF4444"></i><i style="background:#F59E0B"></i><i style="background:#D1D5DB"></i><i style="background:#86EFAC"></i><i style="background:#22C55E"></i><i style="background:#15803D"></i> 7 = tout à fait d'accord</div>
+      <p class="src">64 répondants sur 74 (86 %) trouvent le prix raisonnable (note 5 à 7). Alpha de Cronbach : 0,74.</p></div>
+    <div class="card"><h3>Intention d'utiliser l'offre · moyenne 4,33 / 7</h3><div class="lk" style="margin-top:10px">
+      <div class="lk-row"><span>Intention d'utiliser</span><div class="lk-bar"><i style="width:13.51%;background:#B91C1C" title="1 : 10"></i><i style="width:5.41%;background:#EF4444" title="2 : 4"></i><i style="width:9.46%;background:#F59E0B" title="3 : 7"></i><i style="width:17.57%;background:#D1D5DB" title="4 : 13"></i><i style="width:22.97%;background:#86EFAC" title="5 : 17"></i><i style="width:20.27%;background:#22C55E" title="6 : 15"></i><i style="width:10.81%;background:#15803D" title="7 : 8"></i></div><span class="m">4,35</span></div><div class="lk-row"><span>L'utiliser au quotidien</span><div class="lk-bar"><i style="width:13.51%;background:#B91C1C" title="1 : 10"></i><i style="width:5.41%;background:#EF4444" title="2 : 4"></i><i style="width:10.81%;background:#F59E0B" title="3 : 8"></i><i style="width:21.62%;background:#D1D5DB" title="4 : 16"></i><i style="width:14.86%;background:#86EFAC" title="5 : 11"></i><i style="width:25.68%;background:#22C55E" title="6 : 19"></i><i style="width:8.11%;background:#15803D" title="7 : 6"></i></div><span class="m">4,28</span></div><div class="lk-row"><span>L'utiliser bientôt</span><div class="lk-bar"><i style="width:12.16%;background:#B91C1C" title="1 : 9"></i><i style="width:6.76%;background:#EF4444" title="2 : 5"></i><i style="width:8.11%;background:#F59E0B" title="3 : 6"></i><i style="width:28.38%;background:#D1D5DB" title="4 : 21"></i><i style="width:8.11%;background:#86EFAC" title="5 : 6"></i><i style="width:24.32%;background:#22C55E" title="6 : 18"></i><i style="width:12.16%;background:#15803D" title="7 : 9"></i></div><span class="m">4,35</span></div></div><div class="lk-keys">1 = pas du tout d'accord <i style="background:#B91C1C"></i><i style="background:#EF4444"></i><i style="background:#F59E0B"></i><i style="background:#D1D5DB"></i><i style="background:#86EFAC"></i><i style="background:#22C55E"></i><i style="background:#15803D"></i> 7 = tout à fait d'accord</div>
+      <p class="src">Avis partagés : 5,52 chez les 23 utilisateurs de Deezer, 3,79 chez les autres. Alpha de Cronbach : 0,94.</p></div>
+  </div>
+  <p class="src">Notes de 1 à 7, colonnes <code>pv_1</code> à <code>bi_3</code> de <a href="donnees/reponses.csv">nos réponses</a>. Un alpha supérieur à 0,7 indique que les trois phrases mesurent bien la même chose. Ceux qui jugent le prix plus juste acceptent aussi des prix plus élevés (corrélation de 0,31 avec le prix maximal accepté).</p>
+</section>
+<section>
+  <div class="verdict"><img src="img/deezer-coeur.png" alt=""><p><b>Ce que disent Gabor-Granger et Likert :</b> 5,99 € est le prix qui rapporte le plus, et il est perçu comme juste (5,55 / 7). Autour de 6,99 €, Deezer perdrait entre un tiers et la moitié des étudiants prêts à payer. 6,99 € est « acceptable » au sens de Van Westendorp, mais trop d'étudiants ne l'achèteraient pas.</p></div>
+  <details class="more"><summary>Voir les tableaux complets</summary><div class="body">
+  <div class="table-wrap"><table><thead><tr><th>Prix</th><th class="n">Acceptent</th><th class="n">Part</th><th class="n">Prix × part</th><th class="n">Perte vs 5,99 €</th></tr></thead><tbody>
+  <tr><td>4,99 €</td><td class="n">69</td><td class="n">93,2 %</td><td class="n">4,65 €</td><td class="n">—</td></tr>
+  <tr><td>5,49 €</td><td class="n">62</td><td class="n">83,8 %</td><td class="n">4,60 €</td><td class="n">—</td></tr>
+  <tr class="hl"><td>5,99 €</td><td class="n">58</td><td class="n">78,4 %</td><td class="n">4,70 €</td><td class="n">0</td></tr>
+  <tr><td>6,29 €</td><td class="n">50</td><td class="n">67,6 %</td><td class="n">4,25 €</td><td class="n">13,8 %</td></tr>
+  <tr><td>6,49 €</td><td class="n">46</td><td class="n">62,2 %</td><td class="n">4,03 €</td><td class="n">20,7 %</td></tr>
+  <tr><td>6,79 €</td><td class="n">39</td><td class="n">52,7 %</td><td class="n">3,58 €</td><td class="n">32,8 %</td></tr>
+  <tr><td>7,07 €</td><td class="n">26</td><td class="n">35,1 %</td><td class="n">2,48 €</td><td class="n">55,2 %</td></tr>
+  </tbody></table></div>
+  <p class="src">5 répondants refusent même 4,99 €. Perte vs 5,99 € = <code>1 − part ÷ 78,4 %</code>. Chez les 23 utilisateurs de Deezer, 87 % acceptent 5,99 € et 35 % acceptent 7,07 € : la chute est comparable.</p>
+  <p class="calc-title">Pourquoi Van Westendorp et Gabor-Granger ne disent pas la même chose ?</p>
+  <p>Van Westendorp demande à partir de quand un prix devient « trop cher ». Gabor-Granger demande « l'achèteriez-vous ? ». Un étudiant peut trouver 6,99 € acceptable pour cette offre et préférer quand même ne pas la payer, rester sur une offre gratuite ou familiale. C'est la complémentarité décrite au <a href="https://prix.iae-mod.fr/seances/seance-cm-2.html">CM 2</a> : Van Westendorp trace la zone, Gabor-Granger choisit le prix à l'intérieur.</p></div></details>
+</section>
+<div class="pager"><a href="resultats.html"><small>← Précédent</small><b>4. Prix acceptable</b></a><a class="next" href="decision.html"><small>Suivant →</small><b>6. Décision</b></a></div>
+</main>
+<footer><div class="in"><span>Rudy Poirot · Léo Dupré · Malik Adidou · Lenny Peissel · Yohan Ribeiro — M1 Marketing Vente, IAE Clermont Auvergne · novembre 2026</span><span>Étude universitaire indépendante. Deezer et Spotify sont des marques de leurs propriétaires.</span></div></footer>
+</body>
+</html>
